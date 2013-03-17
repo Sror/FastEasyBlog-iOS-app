@@ -67,7 +67,7 @@ to run the app, you need todo:
 \#define kAPP_ID     @""
 \#define kAPI_Key    @""
 ```
-replace the empty str(**@""**) with the key and secret that you applied
+replace the empty str(@"") with the key and secret that you applied
 
 ##License
 =========
