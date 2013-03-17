@@ -1,0 +1,35 @@
+//
+// Prefix header for all source files of the 'FastEasyBlog' target in the 'FastEasyBlog' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <UIKit/UIKit.h>
+    #import "ROConnect.h"
+    #import "Global.h"
+    #import "GlobalProtocols.h"
+    #import "GlobalConstDefinition.h"
+    #import "ExtensionMethods.h"
+	#import "FEBAppConfig.h"
+    #import "FastEasyBlogAppDelegate.h"
+    #import "RegexKitLite.h"
+#endif
+
+#define AppConfig(x) [[FEBAppConfig sharedAppConfig] objectForKey:x]
+
+#define fileExistsAtPath(x) [[NSFileManager defaultManager] fileExistsAtPath:x]
+#define removerAtItem(x) [[NSFileManager defaultManager] removeItemAtPath:x error:nil]
+#define appDelegateObj [[UIApplication sharedApplication] delegate]
+
+
+//! 1、XCode 中设置控制
+// Target > Get Info > Build > GCC_PREPROCESSOR_DEFINITIONS
+// Configuration = Release: <empty>
+//               = Debug:   DEBUG_MODE=1
+//！2、人为控制
+//#define DEBUG_MODE 
+#ifdef DEBUG_MODE
+#define DebugLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#else
+#define DebugLog( s, ... ) 
+#endif

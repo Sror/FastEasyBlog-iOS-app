@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>weibo_text_fontName</key>
+	<string>MicrosoftYaHei</string>
+	<key>sourceWeibo_text_fontName</key>
+	<string>MicrosoftYaHei</string>
+	<key>renrenStatus_text_fontName</key>
+	<string>MicrosoftYaHei</string>
+	<key>renrenBlog_introduction_fontName</key>
+	<string>MicrosoftYaHei</string>
+	<key>renrenBlog_detail_fontName</key>
+	<string>MicrosoftYaHei</string>
+	<key>renrenPhoto_desc_fontName</key>
+	<string>MicrosoftYaHei</string>
+	<key>homePage_tip_hasShown</key>
+	<false/>
+	<key>sinaWeibo_main_tip_hasShown</key>
+	<false/>
+	<key>tencentWeibo_main_tip_hasShown</key>
+	<false/>
+	<key>renren_main_tip_hasShown</key>
+	<false/>
+	<key>current_HomePage_BG_Index</key>
+	<integer>0</integer>
+	<key>introduce_text</key>
+	<string>开源软件的拥护者，封闭生态系统的支持者。擅用Dot net，喜欢Java，热爱Objective-C! 欢迎交流(^_^)</string>
+	<key>email_text</key>
+	<string>                                                                                                                               --------------------------------------------------- 亲，首先感谢你对于快易博的支持。希望你能给我一些关于该应用的功能性或者改进型的建议，哪怕你不喜欢这个应用，如果你能够给我一些关于用户体验上的建议，我也乐意接受。这个应用目前还是初期版本，我希望在我有限的时间內，对它持续加以改进并扩展更多的功能，敬请期待。最后，对于你的建议与支持，本人再次报以由衷的感谢!</string>
+	<key>isAudioOpen</key>
+	<true/>
+</dict>
+</plist>

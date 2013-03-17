@@ -1,0 +1,104 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width"></meta>
+    <script type="text/javascript" src="zepto.min.js"></script>
+    <script type="text/javascript" src="underscore-min.js"></script>
+    <script type="text/javascript" src="FEB.js"></script>
+    <link rel="stylesheet" type="text/css" href="FEB.css"></link>
+    <script type="text/javascript">
+        window.onload = function() {
+            FEB.sendCommand('changeFamily','');
+            //registe click events
+            $('#main_div .discuss_bottom .repeat_span').click(function(){
+                                                              if(FEB.isDataForRepublish){
+                                                              return;
+                                                              }
+                                                              FEB.isDataForRepublish=true;
+                                                              $(this).css('color','#54D63C');
+                                                              $('#main_div .discuss_bottom .discuss_span').css('color','#000');
+                                                              $('#guide_div #guide_img_comment').hide();
+                                                              $('#guide_div #guide_img_republish').show();
+                                                              //send request
+                                                              FEB.sendCommand('loadRepublishList','0');
+                                                              });
+            
+            $('#main_div .discuss_bottom .discuss_span').click(function(){
+                                                               if(!FEB.isDataForRepublish){
+                                                               return;
+                                                               }
+                                                               FEB.isDataForRepublish=false;
+                                                               $(this).css('color','#54D63C');
+                                                               $('#main_div .discuss_bottom .repeat_span').css('color','#000');
+                                                               $('#guide_div #guide_img_republish').hide();
+                                                               $('#guide_div #guide_img_comment').show();
+                                                               //send request
+                                                               FEB.sendCommand('loadCommentList','0');
+                                                               });
+            
+            $('#main_div #republishAndcomment_div #loadMore_p').click(function(){
+                                                                      if(FEB.isDataForRepublish){
+                                                                      FEB.loadTypeForRepublish='1';
+                                                                      FEB.sendCommand('loadRepublishList',FEB.loadTypeForRepublish);
+                                                                      }else{
+                                                                      FEB.loadTypeForComment='1';
+                                                                      FEB.sendCommand('loadCommentList',FEB.loadTypeForComment);
+                                                                      }
+                                                                      });
+            
+            //send request to load republish list  (default operate)
+            FEB.sendCommand('loadRepublishList','0');
+        }
+    </script>
+  </head>
+  <body>
+  <div id="main_div">
+	<div id="top_div">
+		<img id="head_img" src="{{ weibo_headImgUrl }}" alt=""/>
+		<a href="">{{ weibo_userName }}</a>
+		<span>{{ weibo_pubDate }}</span>
+	</div>
+	<div class="both"></div>
+      <p>{{ weibo_text }}</p>
+      
+    {% if  hasWeiboImg  %}
+	<img id="weibo_img" src="{{ weibo_imgUrl }}" alt=""/>
+    {% /if %}
+    
+    {% if hasSource %}
+	<div id="source_div">
+		<div id="source_top_div">
+            <img id="source_head_img" src="{{ source_headImgUrl }}" alt=""/>
+            <a href="">{{ source_userName }}</a>
+        </div>
+        <div class="both"></div>
+		<p>{{ source_text }}</p>
+        
+        {% if  hasSourceImg  %}
+		<img id="source_weibo_img" src="{{ source_imgUrl }}" alt=""/>
+        {% /if %}
+        
+		<p class="source_pbtm"><span class="source_from">来自:{{ source_comeFrom }}</span><span class="source_time">{{ source_pubDate }}</span></p>
+    </div>
+    {% /if %}
+    
+    <div class="both"></div>
+    <div class="discuss_bottom">
+        <span class="repeat_span">转发&nbsp;{{ republishNum }}</span>
+        <span class="discuss_span">评论&nbsp;{{ commentNum }}</span>
+        <span class="discuss_from">来自:{{ weibo_comeFrom }}</span>
+    </div>
+    <div class="both"></div>
+      <!--showing guide image-->
+      <div id="guide_div">
+          <img id="guide_img_republish" src="{{ default_guide_imgUrl }}"></img>
+          <img id="guide_img_comment" src="{{ comment_guide_imgUrl }}" style="display:none"></img>
+      </div>
+      <div id="republishAndcomment_div">
+          <p class="tip_p" id="isLoading_p">加载中.....</p>
+          <!--item list showing-->
+		  <div id="rAndc_list_div"></div>
+		  <p class="tip_p" id="loadMore_p" style="display:none">加载更多</p>
+      </div>
+  </div>
+  </body>
+</html>

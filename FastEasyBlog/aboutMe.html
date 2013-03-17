@@ -1,0 +1,67 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width"></meta>
+        <script type="text/javascript" src="zepto.min.js"></script>
+        <script type="text/javascript" src="underscore-min.js"></script>
+        <script type="text/javascript" src="FEB.js"></script>
+        <link rel="stylesheet" type="text/css" href="FEB.css"></link>
+        <script type="text/javascript">
+            window.onload = function() {
+                //email
+                $('#myEmail_span_aboutMe').click(
+                    function(){
+                        FEB.sendCommand('sendEmail','');
+                    }
+                )
+                
+                //weibo
+                $('#weibo_span_aboutMe').click(
+                    function(){
+                        FEB.sendCommand('weiboAtMe','');
+                    }
+                )
+                
+                //home page
+                $('#homePage_span_aboutMe').click(
+                    function(){
+                        FEB.sendCommand('homePage','');
+                    }
+                )
+            }
+        </script>
+    </head>
+<body>
+    <div id="main_div_aboutMe" style="background-image:url({{ bgUrl }})">
+        <div id="top_div_aboutMe">
+            <img id="head_img_aboutMe" src="{{ headImgUrl }}" alt=""/>
+            <div id="t1_div_aboutMe">
+                <span class="t_span_aboutMe">CSDN认证专家(ID:yanghua_kobe)</span>
+            </div>
+            <div id="t2_div_aboutMe">
+                <span class="t_span_aboutMe">新浪微博认证开发者</span>
+            </div>
+        </div>
+        <div class="both"></div>
+        <p id="introduce_p_aboutMe">{{ introduce }}</p>
+        <p>------------------------------------------------------</p>
+        <p>
+            <span class="lbl_span_aboutMe">我的邮箱:</span>
+            <span class="val_span_aboutMe" id="myEmail_span_aboutMe">{{ email }}
+            </span>
+        </p>
+        <p>
+            <span class="lbl_span_aboutMe">新浪/腾讯微博:</span>
+            <span class="val_span_aboutMe" id="weibo_span_aboutMe">{{ weiboNick }}
+            </span>
+        </p>
+        <p>
+            <span class="lbl_span_aboutMe">主页:</span>
+            <span class="val_span_aboutMe" id="homePage_span_aboutMe">
+                {{ homePage }}
+            </span>
+        </p>
+        <p>
+            <span class="lbl_span_aboutMe">图片处理(淘宝店):robben7758@qq.com</span>
+        </p>
+    </div>
+</body>

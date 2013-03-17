@@ -1,0 +1,80 @@
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote,
+dl, dt, dd, ul, ol, li,pre,form, fieldset, 
+legend, button, input, textarea,th, td,img
+{margin:0;padding:0;border:none;}
+img{ border:0px;} 
+table { border-collapse: collapse; border-spacing: 0; }
+a{text-decoration:none;color:#54d63c;}
+a:hover{text-decoration:none;}
+body {
+    font-family: Arial;
+    font-size: 16px;
+    color: #333333;
+}
+.both{
+clear: both;
+}
+@media screen and (max-width: 699px) {
+    body img {
+        max-width: 300px;
+    }
+}
+#main_div{width:310px;padding:5px;}
+#main_div p{font-size:16px;}
+#top_div{height:50px;line-height:50px;margin-bottom:6px;}
+#top_div img#head_img{width:40px;height:40px;display:inline-block;float:left;background-color:#d6dedf;}
+#top_div a{color:#54d63c;font-size:16px;margin-left:5px;margin-bottom:12px;}
+#top_div span{float:right;font-size:12px;margin-right:3px;}
+#main_div img#weibo_img{display:block;margin:10px auto 0;text-align:center;}
+
+#source_div{background-color:#ebebeb;margin-top:10px;overflow:hidden;width:290px;margin-left:7px;}
+#source_div p{font-size:15px;}
+#source_div #source_top_div{height:40px;line-height:40px;margin-bottom:6px;}
+#source_div img#source_head_img{width:30px;height:30px;display:inline-block;float:left;background-color:#d6dedf;margin-top:10px;margin-left:10px;}
+#source_top_div a{color:#54d63c;font-size:15px;margin-left:5px;margin-top:12px;}
+#source_div img#source_weibo_img{display:block;background-color:#e4be90;margin:10px auto 0;text-align:center;}
+#source_div p.source_pbtm{padding:6px 3px;overflow:hidden;}
+#source_div p .source_from{float:left;font-size:12px;}
+#source_div p .source_time{float:right;font-size:12px;}
+.discuss_bottom{margin-top:15px;}
+.discuss_bottom a,.discuss_bottom span{font-size:15px;}
+.discuss_bottom .repeat_span{color:#54D63C;float:left;margin-left:10px;font-size:15px;display:inline-block;}
+.discuss_bottom .discuss_span{color:#000; margin-left:40px;}
+.discuss_bottom span.discuss_from{float:right;font-size:15px;margin-right:3px;}
+
+
+#guide_div{width:100%;height:10px}
+#republishAndcomment_div,#republishAndcomment_div{width:100%;}
+#republishAndcomment_div .tip_p{width:100%;text-align:center;color:black;font-size:18px;font-weight:bold;height:30;margin-top:15px;}
+.rAndc_head_img{width:30px;height:30px;margin-left:10px;margin-top:10px;border:1px solid #ccc;display:inline-block;}
+.rAndc_right_div{width:260px;float:right;margin-top:8px;}
+.rAndc_right_div p{margin:10px 0;margin-right:10px;}
+.rAndc_right_div p.text_p{font-size:13px;}
+.rAndc_right_div p.pubDate_p{font-size:15px; color:#ccc;}
+.rAndc_right_div a{color: #54D63C;}
+.separator{width:100%;}
+.rAndc_item_div{padding:5px 0 ;border-bottom:1px solid #ccc;overflow:hidden;}
+
+/****************************人人日志*******************************/
+#main_div{overflow:hidden;}
+#main_div #top_blogDetail_div{margin-bottom:6px;}
+#main_div #top_blogDetail_div img#head_img{width:40px;height:40px;display:inline-block;float:left;background-color:#d6dedf;}
+#main_div #top_blogDetail_div #title_p{width:260px;font-weight:bold;float:right;}
+.discuss_bottom span.discuss_pubDate{float:right;font-size:15px;margin-right:3px;}
+.discuss_bottom .comment_blog_span{color:#54D63C;float:left;margin-left:20px;font-size:15px;display:inline-block;}
+#main_div #content_div{width:100%;}
+#main_div #content_div p,a,span{font-size:16px;}
+
+/****************************人人照片*******************************/
+#main_div img#photo_img{display:block;margin:10px auto 0;text-align:center;}
+#main_div p#album_p{color:#ccc;margin:5px 5px 5px 5px;}
+
+/****************************关于我*********************************/
+#main_div_aboutMe{width:310px;padding:5px;}
+#main_div_aboutMe #top_div_aboutMe{height:50px;}
+#top_div_aboutMe img#head_img_aboutMe{width:40px;height:40px;display:inline-block;float:left;background-color:#d6dedf;}
+#top_div_aboutMe div#t1_div_aboutMe{margin-left:10px;float:left;height:20px;}
+#top_div_aboutMe div#t2_div_aboutMe{margin-left:10px;float:left;height:20px;}
+#top_div_aboutMe span.t_span_aboutMe{margin-top:8px;font-size:14px;}
+#main_div_aboutMe p{margin:3 auto 2 0}
+#main_div_aboutMe .val_span_aboutMe{color:#54d63c;}

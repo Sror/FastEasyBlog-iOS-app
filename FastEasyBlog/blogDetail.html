@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width"></meta>
+        <script type="text/javascript" src="zepto.min.js"></script>
+        <script type="text/javascript" src="underscore-min.js"></script>
+        <script type="text/javascript" src="FEB.js"></script>
+        <link rel="stylesheet" type="text/css" href="FEB.css"></link>
+        <script type="text/javascript">
+            window.onload = function() {
+                FEB.sendCommand('changeFamily','');
+            }
+        </script>
+    </head>
+    <body>
+        <div id="main_div">
+            <div id="top_blogDetail_div">
+                <img id="head_img" src="{{ headImgUrl }}" alt=""/>
+                <p id="title_p">{{ blogTitle }}</p>
+            </div>
+            <div class="both"></div>
+            <div id="content_div">
+            {{ blogContent }}
+            </div>
+            <div class="both"></div>
+            <div class="discuss_bottom">
+                <span class="comment_blog_span">评论&nbsp;</span>
+                <span class="discuss_pubDate">{{ blogPubDate }}</span>
+            </div>
+            <div class="both"></div>
+            <!--showing guide image-->
+            <div id="guide_div">
+                <img id="guide_img_republish" src="{{ default_guide_imgUrl }}"></img>
+            </div>
+            <div id="republishAndcomment_div">
+                <p class="tip_p" id="isLoading_p">加载中.....</p>
+                <!--item list showing-->
+                <div id="rAndc_list_div"></div>
+                <p class="tip_p" id="loadMore_p" style="display:none">没有更多评论了.</p>
+            </div>
+        </div>
+    </body>
+</html>
