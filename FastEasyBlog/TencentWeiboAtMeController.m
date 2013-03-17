@@ -79,21 +79,18 @@
     
     OpenApi *myApi=[TencentWeiboManager getOpenApi];
     myApi.delegate=self;
-    if (self.pageFlag==0) {
-        [myApi getAtMeWeiboList:[NSString stringWithFormat:@"%ld",self.pageFlag] 
+    [myApi getAtMeWeiboList:[NSString stringWithFormat:@"%ld",self.pageFlag] 
                        pageTime:[NSString stringWithFormat:@"%ld",self.pageTime] 
                          reqNum:@"20" 
                            type:self.weiboType 
                     contentType:self.contentType];
         
         
-        [GlobalInstance showHUD:@"微博数据加载中,请稍后" 
+    [GlobalInstance showHUD:@"微博数据加载中,请稍后" 
                         andView:self.view 
                          andHUD:self.hud];
         
-        self.imageDownloadsInProgress=[NSMutableDictionary dictionary];
-    }
-    
+    self.imageDownloadsInProgress=[NSMutableDictionary dictionary];    
 }
 
 #pragma mark - tencentweibo delegate -

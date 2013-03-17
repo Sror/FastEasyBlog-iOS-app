@@ -17,8 +17,8 @@
 
 @interface TencentWeiboPublishedByMeController ()
 
-@property (nonatomic,assign) long firstItemTimeStamp;                            
-@property (nonatomic,assign) long lastItemTimeStamp;
+//@property (nonatomic,assign) long firstItemTimeStamp;                            
+//@property (nonatomic,assign) long lastItemTimeStamp;
 @property (nonatomic,retain) NSString *firstItemId;
 @property (nonatomic,retain) NSString *lastItemId;
 @property (nonatomic,retain) NSString *lastid;
@@ -29,8 +29,8 @@
 
 @implementation TencentWeiboPublishedByMeController
 
-@synthesize firstItemTimeStamp;
-@synthesize lastItemTimeStamp;
+//@synthesize firstItemTimeStamp;
+//@synthesize lastItemTimeStamp;
 @synthesize firstItemId;
 @synthesize lastItemId;
 @synthesize lastid;
@@ -94,19 +94,16 @@
     
     OpenApi *myApi=[TencentWeiboManager getOpenApi];
     myApi.delegate=self;
-    if (self.pageFlag==0) {        
-        [myApi getMyPublishedTimeLineWithPageFlag:[NSString stringWithFormat:@"%ld",self.pageFlag] 
-                                         pageTime:[NSString stringWithFormat:@"%ld",self.pageTime] 
-                                           reqNum:@"20" 
-                                             type:self.weiboType 
-                                      contentType:self.contentType lastId:lastid];
+    [myApi getMyPublishedTimeLineWithPageFlag:[NSString stringWithFormat:@"%ld",self.pageFlag] pageTime:[NSString stringWithFormat:@"%ld",self.pageTime] 
+                                       reqNum:@"20" 
+                                         type:self.weiboType 
+                                  contentType:self.contentType lastId:lastid];
         
-        [GlobalInstance showHUD:@"微博数据加载中,请稍后" 
-                        andView:self.view 
-                         andHUD:self.hud];
+    [GlobalInstance showHUD:@"微博数据加载中,请稍后" 
+                    andView:self.view 
+                     andHUD:self.hud];
         
-        self.imageDownloadsInProgress=[NSMutableDictionary dictionary];
-    }
+    self.imageDownloadsInProgress=[NSMutableDictionary dictionary];
 }
 
 #pragma mark - tencentweibo delegate -
@@ -168,7 +165,7 @@
     self.loadMoreDataSourceFunc=^{
         blockedSelf.pageFlag=1;
         lastid=lastItemId;          //加载更多
-        blockedSelf.pageTime=lastItemTimeStamp;
+        blockedSelf.pageTime=self.lastItemTimeStamp;
         
         [self loadWeiboList];
         blockedSelf.reloading1=YES;
@@ -184,7 +181,7 @@
     self.refreshDataSourceFunc=^{
         blockedSelf.pageFlag=2;
         lastid=firstItemId;         //刷新
-        blockedSelf.pageTime=firstItemTimeStamp;
+        blockedSelf.pageTime=self.firstItemTimeStamp;
         
         [self loadWeiboList];
         blockedSelf.reloading=YES;
@@ -197,113 +194,7 @@
     };
     
     self.cellForRowAtIndexPathDelegate=^(UITableView *tableView, NSIndexPath *indexPath){
-        TencentWeiboInfo *currentWeiboInfo=[self.dataSource objectAtIndex:indexPath.row];
-        WeiboCell *cell=nil;
-        
-        BOOL hasWeiboImg=([currentWeiboInfo.image isKindOfClass:[NSArray class]]&&currentWeiboInfo.image.count>0);
-        BOOL hasSourceImg=([currentWeiboInfo.source.image isKindOfClass:[NSArray class]]&&(currentWeiboInfo.source.image.count>0));
-        
-        if (currentWeiboInfo.type==1&&(hasWeiboImg==NO)) {
-            static NSString *cellIdentifier=@"tencentWeiboCellIdentifier";
-            cell=[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-            if (!cell) {
-                cell=[[[WeiboCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier]autorelease];
-            }
-        }else if(currentWeiboInfo.type==1&&(hasWeiboImg==YES)){
-            static NSString *cellIdentifierWithImg=@"tencentWeiboCellIdentifierWithImg";
-            cell=[tableView dequeueReusableCellWithIdentifier:cellIdentifierWithImg];
-            if (!cell) {
-                cell=[[[WeiboCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifierWithImg]autorelease];
-            }
-            cell.imgUrl=[currentWeiboInfo.image objectAtIndex:0];
-        }
-        else if(currentWeiboInfo.type!=1&&(hasSourceImg==NO)){
-            static NSString *cellIdentifierForSource=@"tencentWeiboCellIdentifierForSource";
-            cell=[tableView dequeueReusableCellWithIdentifier:cellIdentifierForSource];
-            if (!cell) {
-                cell=[[[WeiboCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifierForSource]autorelease];
-            }
-        }else if(currentWeiboInfo.type!=1&&(hasSourceImg==YES)){
-            static NSString *cellIdentifierForSourceWithImg=@"tencentWeiboCellIdentifierForSourceWithImg";
-            cell=[tableView dequeueReusableCellWithIdentifier:cellIdentifierForSourceWithImg];
-            if (!cell) {
-                cell=[[[WeiboCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifierForSourceWithImg]autorelease];
-            }
-            cell.imgUrl=[currentWeiboInfo.source.image objectAtIndex:0];
-        }
-        cell.showWeiboImgDelegate=self;
-        cell.hasWeiboImg=hasWeiboImg;
-        cell.hasSourceWeiboImg=hasSourceImg;
-        
-        if (!currentWeiboInfo.headImg) {
-            cell.headImage=[UIImage imageNamed:@"placeholder.png"];
-            if (self.tableView.dragging==NO&&self.tableView.decelerating==NO) {
-                [self startIconDownload:currentWeiboInfo.head forIndexPath:indexPath];
-            }
-        }else {
-            cell.headImage=currentWeiboInfo.headImg;
-        }
-        
-        cell.userName=currentWeiboInfo.nick;
-        cell.publishDate=[TencentWeiboManager resolveTencentWeiboDate:currentWeiboInfo.timestamp];
-        cell.comeFrom=currentWeiboInfo.from;
-        
-        cell.txtWeibo=currentWeiboInfo.text;
-        if (currentWeiboInfo.type!=1&&currentWeiboInfo.source) {
-            if ([currentWeiboInfo.source.text isNotEqualToString:@""]) {
-                NSString *sourceContent=[NSString stringWithFormat:@"%@: %@",currentWeiboInfo.source.nick,currentWeiboInfo.source.text];
-                cell.txtSourceWeibo=sourceContent;
-            }
-        }
-        
-        if (hasSourceImg) {
-            if (!currentWeiboInfo.sourceImg) {
-                NSString *sourceImgUrl=[NSString stringWithFormat:@"%@/%f",[currentWeiboInfo.source.image objectAtIndex:0],WEIBO_IMAGE_MIDDLE_HEIGHT];
-                [cell.sourceImgView setImageWithURL:[NSURL URLWithString:sourceImgUrl]
-                                   placeholderImage:[UIImage imageNamed:@"smallImagePlaceHolder.png"]
-                                            success:^(UIImage *image, BOOL cached) {
-                                                CGSize itemSize=CGSizeMake(WEIBO_IMAGE_HEIGHT*2, WEIBO_IMAGE_HEIGHT*2);
-                                                currentWeiboInfo.sourceImg=[GlobalInstance thumbnailWithImageWithoutScale:image size:itemSize];
-                                                cell.sourceImg=currentWeiboInfo.sourceImg;
-                                            }
-                                            failure:^(NSError *error) {
-                                                
-                                            }];
-            }else{
-                cell.sourceImg=currentWeiboInfo.sourceImg;
-            }
-        }
-        
-        if (hasWeiboImg) {
-            if (!currentWeiboInfo.weiboImg) {
-                cell.weiboImg=[UIImage imageNamed:@"smallImagePlaceHolder.png"];
-                NSString *imgUrl=[NSString stringWithFormat:@"%@/%f",[currentWeiboInfo.image objectAtIndex:0],WEIBO_IMAGE_MIDDLE_HEIGHT];
-                [cell.weiboImgView setImageWithURL:[NSURL URLWithString:imgUrl]
-                                  placeholderImage:[UIImage imageNamed:@"smallImagePlaceHolder.png"]
-                                           success:^(UIImage *image, BOOL cached) {
-                                               CGSize itemSize=CGSizeMake(WEIBO_IMAGE_HEIGHT*2, WEIBO_IMAGE_HEIGHT*2);
-                                               currentWeiboInfo.weiboImg=[GlobalInstance thumbnailWithImageWithoutScale:image size:itemSize];
-                                               cell.weiboImg=currentWeiboInfo.weiboImg;
-                                           }
-                                           failure:^(NSError *error) {
-                                               
-                                           }];
-            }else {
-                cell.weiboImg=currentWeiboInfo.weiboImg;
-            }
-        }
-        
-        if (indexPath.row==0) {
-            firstItemTimeStamp=currentWeiboInfo.timestamp;
-            firstItemId=currentWeiboInfo.uniqueId;
-        }else if (indexPath.row==[self.dataSource count]-1) {
-            lastItemTimeStamp=currentWeiboInfo.timestamp;
-            lastItemId=currentWeiboInfo.uniqueId;
-        }
-        
-        [cell resizeViewFrames];
-        
-        return cell;
+        return [self tableView:tableView cellForRowAtIndexPath:indexPath];
     };
     
     self.heightForRowAtIndexPathDelegate=^(UITableView *tableView, NSIndexPath *indexPath){
@@ -329,6 +220,18 @@
         }
     };
     
+}
+
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    TencentWeiboInfo *currentWeiboInfo=[self.dataSource objectAtIndex:indexPath.row];
+    
+    if (indexPath.row==0) {
+        firstItemId=currentWeiboInfo.uniqueId;
+    }else if (indexPath.row==[self.dataSource count]-1) {
+        lastItemId=currentWeiboInfo.uniqueId;
+    }
+    
+    return [super tableView:tableView cellForRowAtIndexPath:indexPath];
 }
 
 

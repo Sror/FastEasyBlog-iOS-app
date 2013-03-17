@@ -44,7 +44,8 @@ CGSizeMake(CELL_CONTENT_WIDTH-(CELL_CONTENT_MARGIN*2),20000.f)
 
 - (id)initWithRefreshHeaderViewEnabled:(BOOL)enableRefreshHeaderView
           andLoadMoreFooterViewEnabled:(BOOL)enableLoadMoreFooterView{
-    self=[super initWithRefreshHeaderViewEnabled:enableRefreshHeaderView andLoadMoreFooterViewEnabled:enableRefreshHeaderView];
+    self=[super initWithRefreshHeaderViewEnabled:enableRefreshHeaderView
+                    andLoadMoreFooterViewEnabled:enableRefreshHeaderView];
     if (self) {
         self.engine.delegate=self;
         self.feature=@"0";
@@ -63,7 +64,9 @@ CGSizeMake(CELL_CONTENT_WIDTH-(CELL_CONTENT_MARGIN*2),20000.f)
 - (id)initWithRefreshHeaderViewEnabled:(BOOL)enableRefreshHeaderView
           andLoadMoreFooterViewEnabled:(BOOL)enableLoadMoreFooterView
                      andTableViewFrame:(CGRect)frame{
-    self=[super initWithRefreshHeaderViewEnabled:enableRefreshHeaderView andLoadMoreFooterViewEnabled:enableLoadMoreFooterView andTableViewFrame:frame];
+    self=[super initWithRefreshHeaderViewEnabled:enableRefreshHeaderView
+                    andLoadMoreFooterViewEnabled:enableLoadMoreFooterView
+                               andTableViewFrame:frame];
     if (self) {
         self.engine.delegate=self;
         self.feature=@"0";

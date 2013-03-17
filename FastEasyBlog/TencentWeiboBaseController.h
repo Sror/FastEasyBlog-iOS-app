@@ -49,10 +49,11 @@ MWPhotoBrowserDelegate
 - (void)startIconDownload:(NSString*)headurl
              forIndexPath:(NSIndexPath *)indexPath;
 
-//加载当前显示在屏幕中的记录的图片
-//-(void)loadImagesForOneScreenRows;
-
 //加载新鲜事列表
 -(void)loadWeiboList;
+
+////给子类覆盖
+- (UITableViewCell*)tableView:(UITableView *)tableView
+        cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 
 @end

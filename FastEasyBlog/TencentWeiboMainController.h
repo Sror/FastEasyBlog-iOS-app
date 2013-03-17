@@ -15,7 +15,6 @@
 @interface TencentWeiboMainController : TencentWeiboBaseController
 <
 UINavigationControllerDelegate,
-//WeiboImageDelegate,
 TencentWeiboDelegate,
 ClickEventDelegate,
 PopListViewDelegate,

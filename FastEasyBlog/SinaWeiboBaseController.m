@@ -39,7 +39,8 @@
 
 - (id)initWithRefreshHeaderViewEnabled:(BOOL)enableRefreshHeaderView
           andLoadMoreFooterViewEnabled:(BOOL)enableLoadMoreFooterView{
-    self=[super initWithRefreshHeaderViewEnabled:enableRefreshHeaderView andLoadMoreFooterViewEnabled:enableRefreshHeaderView];
+    self=[super initWithRefreshHeaderViewEnabled:enableRefreshHeaderView
+                    andLoadMoreFooterViewEnabled:enableRefreshHeaderView];
     if (self) {
         _engine=[[WBEngine alloc]initWithAppKey:kWBSDKDemoAppKey appSecret:kWBSDKDemoAppSecret];
         
@@ -55,7 +56,9 @@
 - (id)initWithRefreshHeaderViewEnabled:(BOOL)enableRefreshHeaderView
           andLoadMoreFooterViewEnabled:(BOOL)enableLoadMoreFooterView
                      andTableViewFrame:(CGRect)frame{
-    self=[super initWithRefreshHeaderViewEnabled:enableRefreshHeaderView andLoadMoreFooterViewEnabled:enableLoadMoreFooterView andTableViewFrame:frame];
+    self=[super initWithRefreshHeaderViewEnabled:enableRefreshHeaderView
+                    andLoadMoreFooterViewEnabled:enableLoadMoreFooterView
+                               andTableViewFrame:frame];
     if (self) {
         _engine=[[WBEngine alloc]initWithAppKey:kWBSDKDemoAppKey appSecret:kWBSDKDemoAppSecret];
         

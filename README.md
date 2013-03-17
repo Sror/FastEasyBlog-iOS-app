@@ -28,14 +28,14 @@ Finally, you can add more functions for the app if you want.
 there are some ***notifications*** that you should notice list below:
 > (1) the app's running-environment at least iOS **5.1**, so it supports iOS version is:5.1+<br />
 > (2) the app **doesn't** support iPhone 5's screen size, it means the app is better for iPhone 4 and 4S.<br />
-> (3) it **doesn't** support [douban](http://www.douban.com/) now.<br />
+> (3) it **doesn't** support [tianya](http://bbs.tianya.cn/) now.<br />
 > (4) because of sina weibo's ***policy***, the app also **doesn't** support synchronous to sina weibo.
 
 ##Run and Debug
 ===============
 to run the app, you need todo:
 
- * Xcode version 4.3.2 and 4.5 is a plus
+ * Xcode version 4.3.2, if 4.5 is a plus
  * the open platform's app key and secret(you need to be a developer of sina weibo/tencent weibo/renren if you want use it's open platform API) then search the file ***GlobalConstDefinition.h***,open it and find the **TODO** code segment:
  
 ```
