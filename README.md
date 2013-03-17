@@ -31,6 +31,44 @@ there are some ***notifications*** that you should notice list below:
 > (3) it **doesn't** support [douban](http://www.douban.com/) now.<br />
 > (4) because of sina weibo's ***policy***, the app also **doesn't** support synchronous to sina weibo.
 
+##Run and Debug
+===============
+to run the app, you need todo:
+
+ * Xcode version 4.3.2 and 4.5 is a plus
+ * the open platform's app key and secret(you need to be a developer of sina weibo/tencent weibo/renren if you want use it's open platform API) then search the file ***GlobalConstDefinition.h***,open it and find the **TODO** code segment:
+ 
+```
+//sina
+/*
+ *TODO:
+ *go to sina weibo's open platform:http://open.weibo.com/ to apply a ios app
+ *then write the appkey and app secret
+ */
+\#define kWBSDKDemoAppKey @""
+\#define kWBSDKDemoAppSecret @""
+
+//tencent
+/*
+ *TODO:
+ *go to tencent weibo's open platform:http://dev.t.qq.com/ to apply a ios app
+ *then write the appkey and app secret
+ */
+\#define oauthAppKey @""
+\#define oauthAppSecret @""
+
+//renren
+/*
+ *TODO:
+ *go to renren's open platform:http://app.renren.com/developers to apply a ios app
+ *then write the app_ID and API_Key
+ */
+
+\#define kAPP_ID     @""
+\#define kAPI_Key    @""
+```
+replace the empty str(**@""**) with the key and secret that you applied
+
 ##License
 =========
 Copyright (c) 2013 yanghua_kobe. All rights reserved.
