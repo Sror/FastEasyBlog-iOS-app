@@ -22,8 +22,6 @@
 
 @synthesize photoArray=_photoArray;
 @synthesize imageDownloadsInProgress=_imageDownloadsInProgress;
-//@synthesize refreshHeaderView=_refreshHeaderView;
-//@synthesize loadMoreFooterView=_loadMoreFooterView;
 
 @synthesize point;
 @synthesize reloading;
@@ -39,8 +37,6 @@
 - (void)dealloc{
     [_photoArray release],_photoArray=nil;
     [_imageDownloadsInProgress release],_imageDownloadsInProgress=nil;
-//    [_refreshHeaderView release],_refreshHeaderView=nil;
-//    [_loadMoreFooterView release],_loadMoreFooterView=nil;
     
     [_contentType release],_contentType=nil;
     [_weiboType release],_weiboType=nil;
