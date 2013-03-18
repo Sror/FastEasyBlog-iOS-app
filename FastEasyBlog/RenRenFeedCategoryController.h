@@ -2,7 +2,7 @@
 //  RenRenFeedCategoryController.h
 //  FastEasyBlog
 //
-//  Created by svp on 17.07.12.
+//  Created by yanghua on 17.07.12.
 //  Copyright 2012 yanghua_kobe. All rights reserved.
 //
 

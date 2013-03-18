@@ -56,17 +56,10 @@
 - (id)initWithRefreshHeaderViewEnabled:(BOOL)enableRefreshHeaderView
           andLoadMoreFooterViewEnabled:(BOOL)enableLoadMoreFooterView
                      andTableViewFrame:(CGRect)frame{
-    self=[super initWithRefreshHeaderViewEnabled:enableRefreshHeaderView
-                    andLoadMoreFooterViewEnabled:enableLoadMoreFooterView
-                               andTableViewFrame:frame];
+    self=[self initWithRefreshHeaderViewEnabled:enableRefreshHeaderView
+                   andLoadMoreFooterViewEnabled:enableLoadMoreFooterView];
     if (self) {
-        _engine=[[WBEngine alloc]initWithAppKey:kWBSDKDemoAppKey appSecret:kWBSDKDemoAppSecret];
-        
-        self.loadtype=firstLoad;
-        self.since_id=@"0";
-        self.max_id=@"0";
-        self.count=20;
-        self.page=1;
+        self.tableViewFrame=frame;
     }
     
     return self;
@@ -454,6 +447,36 @@
         
         [cell resizeViewFrames];
         return cell;
+    };
+    
+    self.heightForRowAtIndexPathDelegate=^(UITableView *tableView, NSIndexPath *indexPath){
+        BOOL hasWeiboImg=NO;
+        BOOL hasSourceImg=NO;
+        
+        CGFloat currentCellContentHeight=0.0f;                   //当前单元格内容高度
+        SinaWeiboInfo *currentWeiboInfo=[blockedSelf.dataSource objectAtIndex:indexPath.row];
+        hasWeiboImg=[currentWeiboInfo.thumbnail_pic isNotEqualToString:@""];
+        currentCellContentHeight=[GlobalInstance getHeightWithFontText:currentWeiboInfo.text font:WEIBOTEXTFONT constraint:DEFAULT_CONSTRAINT_SIZE minHeight:MIN_CONTENT_HEIGHT];
+        
+        if (currentWeiboInfo.retweeted_status!=nil&&[currentWeiboInfo.retweeted_status.text isNotEqualToString:@""]) {
+            hasSourceImg=[currentWeiboInfo.retweeted_status.thumbnail_pic isNotEqualToString:@""];
+            NSString *shortSourceWeiboTxt=currentWeiboInfo.retweeted_status.text;
+            if (shortSourceWeiboTxt.length>70) {
+                shortSourceWeiboTxt=[NSString stringWithFormat:@"%@...",[shortSourceWeiboTxt substringToIndex:70]];
+            }
+            NSString *sourceContent=[NSString stringWithFormat:@"%@: %@",currentWeiboInfo.retweeted_status.user.screen_name,shortSourceWeiboTxt];
+            
+            currentCellContentHeight+=[GlobalInstance getHeightWithFontText:sourceContent font:SOURCEWEIBOTEXTFONT constraint:DEFAULT_CONSTRAINT_SIZE minHeight:MIN_CONTENT_HEIGHT];
+            
+            currentCellContentHeight+=CELL_CONTENT_SOURCE_MARGIN;
+        }
+        
+        //如果有微博图片
+        if (hasWeiboImg||hasSourceImg) {
+            return TABLE_HEADER_HEIGHT+currentCellContentHeight+TABLE_FOOTER_HEIGHT+5.0f+WEIBO_IMAGE_HEIGHT+IMAGE_MARGIN;
+        }else{
+            return TABLE_HEADER_HEIGHT+currentCellContentHeight+TABLE_FOOTER_HEIGHT+5.0f;
+        }
     };
 }
 

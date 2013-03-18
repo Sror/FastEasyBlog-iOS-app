@@ -10,8 +10,6 @@
 
 @interface ELTableViewController ()
 
-@property (nonatomic,assign) CGRect tableViewFrame;
-
 - (void)initTableView;
 
 - (void)initRefreshHeaderView;

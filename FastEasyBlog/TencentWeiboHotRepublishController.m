@@ -50,11 +50,10 @@
 - (id)initWithRefreshHeaderViewEnabled:(BOOL)enableRefreshHeaderView
           andLoadMoreFooterViewEnabled:(BOOL)enableLoadMoreFooterView
                      andTableViewFrame:(CGRect)frame{
-    self = [super initWithRefreshHeaderViewEnabled:enableRefreshHeaderView
-                      andLoadMoreFooterViewEnabled:enableLoadMoreFooterView
-                                 andTableViewFrame:frame];
+    self = [self initWithRefreshHeaderViewEnabled:enableRefreshHeaderView
+                      andLoadMoreFooterViewEnabled:enableLoadMoreFooterView];
     if (self) {
-        self.pos=0;
+        self.tableViewFrame=frame;
     }
     return self;
 }
@@ -184,29 +183,6 @@
     self.refreshDataSourceCompleted=^{
         self.reloading=NO;
         [self.refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
-    };
-    
-    self.heightForRowAtIndexPathDelegate=^(UITableView *tableView, NSIndexPath *indexPath){
-        BOOL hasWeiboImg=NO;
-        BOOL hasSourceImg=NO;
-        CGFloat currentCellContentHeight=0.0f;
-        TencentWeiboInfo *currentWeiboInfo=[self.dataSource objectAtIndex:indexPath.row];
-        hasWeiboImg=([currentWeiboInfo.image isKindOfClass:[NSArray class]]&&currentWeiboInfo.image.count>0);
-        currentCellContentHeight=[GlobalInstance getHeightWithFontText:currentWeiboInfo.text font:WEIBOTEXTFONT constraint:DEFAULT_CONSTRAINT_SIZE minHeight:MIN_CONTENT_HEIGHT]+CELL_CONTENT_SOURCE_MARGIN*2;
-        if (currentWeiboInfo.type!=1) {
-            hasSourceImg=([currentWeiboInfo.source.image isKindOfClass:[NSArray class]]&&(currentWeiboInfo.source.image.count>0));
-            if ([currentWeiboInfo.source.text isNotEqualToString:@""]) {
-                NSString *sourceContent=[NSString stringWithFormat:@"%@: %@",currentWeiboInfo.source.nick,currentWeiboInfo.source.text];
-                currentCellContentHeight+=[GlobalInstance getHeightWithFontText:sourceContent font:SOURCEWEIBOTEXTFONT constraint:DEFAULT_CONSTRAINT_SIZE minHeight:MIN_CONTENT_HEIGHT];
-                currentCellContentHeight+=CELL_CONTENT_SOURCE_MARGIN*1;
-            }
-        }
-        
-        if (hasWeiboImg||hasSourceImg) {
-            return TABLE_HEADER_HEIGHT+currentCellContentHeight+TABLE_FOOTER_HEIGHT+5+WEIBO_IMAGE_HEIGHT+IMAGE_MARGIN;
-        }else{
-            return TABLE_HEADER_HEIGHT+currentCellContentHeight+TABLE_FOOTER_HEIGHT+5;
-        }
     };
     
 }

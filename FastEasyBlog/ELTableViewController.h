@@ -66,6 +66,8 @@ IconDownloaderDelegate
 @property (nonatomic,copy) loadImagesForVisiableRowsFunc loadImagesForVisiableRowsFunc;
 @property (nonatomic,copy) appImageDownloadCompleted appImageDownloadCompleted;
 
+@property (nonatomic,assign) CGRect tableViewFrame;
+
 
 - (id)initWithRefreshHeaderViewEnabled:(BOOL)enableRefreshHeaderView 
           andLoadMoreFooterViewEnabled:(BOOL)enableLoadMoreFooterView;
