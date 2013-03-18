@@ -274,6 +274,18 @@
     
     __block TencentWeiboBaseController *blockedSelf=self;
     
+    //load more completed
+    self.loadMoreDataSourceCompleted=^{
+        blockedSelf.reloading1=NO;
+        [self.loadMoreFooterView loadMoreScrollViewDataSourceDidFinishedLoading:self.tableView];
+    };
+    
+    //refresh completed
+    self.refreshDataSourceCompleted=^{
+        blockedSelf.reloading=NO;
+        [self.refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
+    };
+    
     blockedSelf.loadImagesForVisiableRowsFunc=^(){
         if ([blockedSelf.dataSource count]>0) {
             //取得当前tableview中的可见cell集合

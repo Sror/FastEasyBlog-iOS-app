@@ -290,12 +290,6 @@ CGSizeMake(CELL_CONTENT_WIDTH-(CELL_CONTENT_MARGIN*2),20000.f)
         blockedSelf.reloading1=YES;
     };
     
-    //load more completed
-    self.loadMoreDataSourceCompleted=^{
-        blockedSelf.reloading1=NO;
-        [self.loadMoreFooterView loadMoreScrollViewDataSourceDidFinishedLoading:self.tableView];
-    };
-    
     //refresh
     self.refreshDataSourceFunc=^{
         blockedSelf.pageFlag=2;
@@ -303,12 +297,6 @@ CGSizeMake(CELL_CONTENT_WIDTH-(CELL_CONTENT_MARGIN*2),20000.f)
         
         [blockedSelf loadWeiboList];
         blockedSelf.reloading=YES;
-    };
-    
-    //refresh completed
-    self.refreshDataSourceCompleted=^{
-        blockedSelf.reloading=NO;
-        [self.refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
     };
     
 }

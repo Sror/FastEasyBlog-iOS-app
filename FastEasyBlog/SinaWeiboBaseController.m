@@ -272,6 +272,21 @@
     
     __block SinaWeiboBaseController *blockedSelf=self;
     
+    //load more completed
+    self.loadMoreDataSourceCompleted=^{
+        blockedSelf.isLoadingMore=NO;
+        [blockedSelf.loadMoreFooterView loadMoreScrollViewDataSourceDidFinishedLoading:
+         blockedSelf.tableView];
+    };
+    
+    //refresh completed
+    self.refreshDataSourceCompleted=^{
+        blockedSelf.isRefreshing=NO;
+        [blockedSelf.refreshHeaderView
+         egoRefreshScrollViewDataSourceDidFinishedLoading:
+         blockedSelf.tableView];
+    };
+    
     self.loadImagesForVisiableRowsFunc=^(){
         if ([blockedSelf.dataSource count]>0) {
             //取得当前tableview中的可见cell集合

@@ -159,16 +159,9 @@
     
     //load more
     self.loadMoreDataSourceFunc=^{
-//        pos=[self.weiboList.pos intValue];
         loadtype=loadMore;
         [self loadweiboList];
         self.reloading1=YES;
-    };
-    
-    //load more completed
-    self.loadMoreDataSourceCompleted=^{
-        self.reloading1=NO;
-        [self.loadMoreFooterView loadMoreScrollViewDataSourceDidFinishedLoading:self.tableView];
     };
     
     //refresh
@@ -177,12 +170,6 @@
         loadtype=refresh;
         [self loadweiboList];
         self.reloading=YES;
-    };
-    
-    //refresh completed
-    self.refreshDataSourceCompleted=^{
-        self.reloading=NO;
-        [self.refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
     };
     
 }

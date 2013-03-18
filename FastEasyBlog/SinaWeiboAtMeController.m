@@ -187,12 +187,6 @@
         blockedSelf.isLoadingMore=YES;
     };
     
-    //load more completed
-    self.loadMoreDataSourceCompleted=^{
-        blockedSelf.isLoadingMore=NO;
-        [blockedSelf.loadMoreFooterView loadMoreScrollViewDataSourceDidFinishedLoading:blockedSelf.tableView];
-    };
-    
     //refresh
     self.refreshDataSourceFunc=^{
         blockedSelf.loadtype=refresh;
@@ -200,13 +194,6 @@
         [blockedSelf loadDataSource];
         blockedSelf.isRefreshing=YES;
     };
-    
-    //refresh completed
-    self.refreshDataSourceCompleted=^{
-        blockedSelf.isRefreshing=NO;
-        [blockedSelf.refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
-    };
-    
     
 }
 

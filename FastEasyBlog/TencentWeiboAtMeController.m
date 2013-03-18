@@ -157,12 +157,6 @@
         blockedSelf.reloading1=YES;
     };
     
-    //load more completed
-    self.loadMoreDataSourceCompleted=^{
-        blockedSelf.reloading1=NO;
-        [self.loadMoreFooterView loadMoreScrollViewDataSourceDidFinishedLoading:self.tableView];
-    };
-    
     //refresh
     self.refreshDataSourceFunc=^{
         blockedSelf.pageFlag=2;
@@ -171,13 +165,6 @@
         [self loadweiboList];
         blockedSelf.reloading=YES;
     };
-    
-    //refresh completed
-    self.refreshDataSourceCompleted=^{
-        blockedSelf.reloading=NO;
-        [self.refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
-    };
-    
     
 }
 
