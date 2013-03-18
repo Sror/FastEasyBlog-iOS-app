@@ -121,7 +121,7 @@ CGSizeMake(CELL_CONTENT_WIDTH-(CELL_CONTENT_MARGIN*2),20000.f)
                               forKey:@"page"];
             break;
             
-        case refresh:             //刷新
+        case refresh:               //刷新
             [requestParams setObject:self.since_id forKey:@"since_id"];
             [requestParams setObject:self.feature forKey:@"feature"];
             [requestParams setObject:[NSString stringWithFormat:@"%d",self.count] 
@@ -130,7 +130,7 @@ CGSizeMake(CELL_CONTENT_WIDTH-(CELL_CONTENT_MARGIN*2),20000.f)
                               forKey:@"page"];
             break;
             
-        case loadMore:             //加载更多
+        case loadMore:              //加载更多
             [requestParams setObject:self.max_id forKey:@"max_id"];
             [requestParams setObject:self.feature forKey:@"feature"];
             [requestParams setObject:[NSString stringWithFormat:@"%d",self.count] 
@@ -141,10 +141,10 @@ CGSizeMake(CELL_CONTENT_WIDTH-(CELL_CONTENT_MARGIN*2),20000.f)
     }
     
     [self.engine loadRequestWithMethodName:@"statuses/home_timeline.json"
-                           httpMethod:@"GET"
-                               params:requestParams
-                         postDataType:kWBRequestPostDataTypeNone
-                     httpHeaderFields:nil];
+                                httpMethod:@"GET"
+                                    params:requestParams
+                              postDataType:kWBRequestPostDataTypeNone
+                          httpHeaderFields:nil];
     
     [requestParams release];
     

@@ -32,18 +32,13 @@ BindCheckNotificationDelegate,
 PlatformBaseControllerDelegate,
 WeiboImageDelegate,
 MWPhotoBrowserDelegate
->{
-	IBOutlet UITableView *newsTableView;
-	NSMutableArray *newsList;
-    
+>{    
 	EGORefreshTableHeaderView *_refreshHeaderView;      //下拉刷新
 	LoadMoreTableFooterView *_loadMoreFooterView;       //上提加载更多
 	CGPoint point;                                      //判断是上提还是下拉
-	int currentPage;
     
 	BOOL _reloading;
 	BOOL _reloading1;
-    NSString *currentCategories;                        //当前新鲜事类别
        
     loadType loadtype;
 }

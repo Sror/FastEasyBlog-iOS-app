@@ -93,8 +93,6 @@ typedef enum{
 @synthesize tipBtn=_tipBtn;
 
 #pragma mark -
-#pragma mark life cycle
-
 - (void)dealloc {
     [_photoArray release],_photoArray=nil;
 	_refreshHeaderView=nil;
@@ -241,7 +239,6 @@ typedef enum{
 }
 
 -(void)renren:(Renren *)renren requestFailWithError:(ROError *)error{
-    //关闭加载指示器
     [GlobalInstance hideHUD:self.hud];
 	[GlobalInstance showMessageBoxWithMessage:@"API请求错误"];
 }
@@ -273,9 +270,18 @@ typedef enum{
 	CGFloat floatContentHeight=0.0;
 	RenRenNews *news=(RenRenNews*)[self.newsList objectAtIndex:indexPath.row];
 	if ([news.feed_type intValue]==10||[news.feed_type intValue]==11) {
-		floatContentHeight=[GlobalInstance getHeightWithFontText:news.message font:RENRENSTATUSFONT constraint:DEFAULT_CONSTRAINT_SIZE minHeight:MIN_CONTENT_HEIGHT]+5.0f;
+		floatContentHeight=[GlobalInstance
+                            getHeightWithFontText:news.message
+                            font:RENRENSTATUSFONT
+                            constraint:DEFAULT_CONSTRAINT_SIZE
+                            minHeight:MIN_CONTENT_HEIGHT]+5.0f;
 	}else if ([news.feed_type intValue]==20||[news.feed_type intValue]==21||[news.feed_type intValue]==22||[news.feed_type intValue]==23) {
-		floatContentHeight=[GlobalInstance getHeightWithText:news.title fontSize:15 constraint:DEFAULT_CONSTRAINT_SIZE minHeight:MIN_CONTENT_HEIGHT]+[GlobalInstance getHeightWithFontText:news.description font:RENRENBLOGINTRODUCTIONFONT constraint:DEFAULT_CONSTRAINT_SIZE minHeight:MIN_CONTENT_HEIGHT];
+		floatContentHeight=[GlobalInstance
+                            getHeightWithText:news.title
+                            fontSize:15
+                            constraint:DEFAULT_CONSTRAINT_SIZE
+                            minHeight:MIN_CONTENT_HEIGHT]+[GlobalInstance getHeightWithFontText:news.description
+                                                 font:RENRENBLOGINTRODUCTIONFONT constraint:DEFAULT_CONSTRAINT_SIZE minHeight:MIN_CONTENT_HEIGHT];
 		floatContentHeight+=5.0f;
 	}else if([news.feed_type intValue]==30||[news.feed_type intValue]==31||[news.feed_type intValue]==32||[news.feed_type intValue]==36){
 //        CGFloat albumNameHeight=[GlobalInstance getHeightWithFontText:news.title font:RENRENALBUMNAMEFONT constraint:DEFAULT_CONSTRAINT_SIZE minHeight:20];
@@ -548,7 +554,8 @@ typedef enum{
         }
     }
     if (btn) {
-	[btn setBackgroundImage:[UIImage imageNamed:@"publish_SubBtn.png"] forState:UIControlStateNormal];
+	[btn setBackgroundImage:[UIImage imageNamed:@"publish_SubBtn.png"]
+                   forState:UIControlStateNormal];
     }
 }
 
@@ -604,7 +611,6 @@ typedef enum{
 	cell.publishDate=[RenRenManager resolveRenRenDate:news.update_time];
 	cell.statusContent=news.message;
 	
-    //	cell.commentNum=[NSString stringWithFormat:@"评论 %d",[[news.comments objectForKey:@"count"]intValue]];
 	[cell resizeViewFrames];
 	
 	return cell;
@@ -640,7 +646,6 @@ typedef enum{
 	cell.title=news.title;
 	cell.introduction=news.description;
 	
-    //	cell.commentNum=[NSString stringWithFormat:@"评论 %d",[[news.comments objectForKey:@"count"]intValue]];
 	[cell resizeViewFrames];
 	
 	return cell;
@@ -708,8 +713,7 @@ typedef enum{
 	return cell;
 }
 
-#pragma mark -
-#pragma mark private methods
+#pragma mark - private methods -
 /*
  *设置“刷新”和“加载更多”视图
  */
@@ -831,13 +835,15 @@ typedef enum{
 - (void)registerGestureOperation{
 	UISwipeGestureRecognizer *recognizer; 
     
-	recognizer = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(handleGesture:)];
-    [recognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];			//右滑(转发)
+	recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)];
+    //右滑(转发)
+    [recognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];			
     [self.newsTableView addGestureRecognizer:recognizer];
 	[recognizer release];
 	
     recognizer = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(handleGesture:)];
-    [recognizer setDirection:(UISwipeGestureRecognizerDirectionLeft)];			//左滑评论
+    //左滑评论
+    [recognizer setDirection:(UISwipeGestureRecognizerDirectionLeft)];			
     [self.newsTableView addGestureRecognizer:recognizer];
 	[recognizer release];
 }
