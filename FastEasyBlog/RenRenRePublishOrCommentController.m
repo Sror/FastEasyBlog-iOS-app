@@ -9,7 +9,6 @@
 #import "RenRenRePublishOrCommentController.h"
 
 #import "UIPlaceHolderTextView.h"
-#import "Global.h"
 #import "RenRenManager.h"
 #import "MTStatusBarOverlay.h"                  		//自定义状态栏
 #import "ExtensionMethods.h"
@@ -63,6 +62,7 @@
 			commentType,
 			sourceContent,
             delegate;
+
 @synthesize isStatus,
             isPhoto,
             isPublishedPhoto,
@@ -194,8 +194,8 @@
  */
 -(void)initMTStatusBarOverlay{
     overlay = [MTStatusBarOverlay sharedInstance];
-    overlay.animation = MTStatusBarOverlayAnimationFallDown;  // MTStatusBarOverlayAnimationShrink
-    overlay.detailViewMode = MTDetailViewModeHistory;         // enable automatic history-tracking and show in detail-view
+    overlay.animation = MTStatusBarOverlayAnimationFallDown;
+    overlay.detailViewMode = MTDetailViewModeHistory;
 }
 
 /*
@@ -469,7 +469,10 @@
         return;
     }
     
-    UIActionSheet *actionSheet=[[UIActionSheet alloc]initWithTitle:@"" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"清空所有內容" otherButtonTitles:nil];
+    UIActionSheet *actionSheet=[[UIActionSheet alloc] initWithTitle:@""
+                                                           delegate:self
+                                                  cancelButtonTitle:@"取消"
+                                             destructiveButtonTitle:@"清空所有內容" otherButtonTitles:nil];
     [actionSheet showInView:self.view];
     [actionSheet release];
 }

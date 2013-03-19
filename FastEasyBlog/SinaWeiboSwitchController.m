@@ -87,18 +87,24 @@
     
     //and so on
     
-    
     return [self.childViewControllers retain];
 }
 
 - (NSMutableArray*)initChildViewControllerNavTitles{
-    return [[[NSMutableArray alloc]initWithObjects:@"新浪微博",@"@我的",@"评论箱",@"热门收藏",@"我发表的", nil]autorelease];
+    return [[[NSMutableArray alloc]initWithObjects:
+                                                    @"新浪微博",
+                                                    @"@我的",
+                                                    @"评论箱",
+                                                    @"热门收藏",
+                                                    @"我发表的",
+                                                    nil]autorelease];
 }
 
 #pragma mark - Click Event Delegate -
 -(void)doClickAtTarget:(ClickableLabel *)label{
     UIButton *guideBtn=(UIButton*)[self.navigationItem.titleView viewWithTag:POPVIEWGUIDE_TAG];
-    [guideBtn setBackgroundImage:[UIImage imageNamed:@"popup.png"] forState:UIControlStateNormal];
+    [guideBtn setBackgroundImage:[UIImage imageNamed:@"popup.png"]
+                        forState:UIControlStateNormal];
     if ([self.currentCtrller isKindOfClass:[SinaWeiboMainController class]]) {
         [(SinaWeiboMainController*)self.currentCtrller showListView];
     }

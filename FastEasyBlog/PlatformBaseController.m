@@ -96,14 +96,7 @@
  *为导航栏设置右侧的自定义按钮
  */
 -(void)setRightBarButtonForNavigationBar{
-//	UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
-//	btn.frame=CGRectMake(285,0,45,45);
-//	[btn setBackgroundImage:[UIImage imageNamed:@"homePageBtn.png"] forState:UIControlStateNormal];
-//	[btn addTarget:self action:@selector(homePageBtn_TouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
-//	[btn addTarget:self action:@selector(homePageBtn_TouchDown:) forControlEvents:UIControlEventTouchDown];
-//	UIBarButtonItem *menuBtn=[[UIBarButtonItem alloc]initWithCustomView:btn];
-//	self.navigationItem.rightBarButtonItem=menuBtn;
-//	[menuBtn release];
+
 }
 
 -(void)homePageBtn_TouchDown:(id)sender{
@@ -113,13 +106,15 @@
 
 -(void)homePageBtn_TouchUpInside:(id)sender{
 	UIButton *btn=(UIButton*)self.navigationItem.rightBarButtonItem.customView;
-	[btn setBackgroundImage:[UIImage imageNamed:@"homePageBtn.png"] forState:UIControlStateNormal];
+	[btn setBackgroundImage:[UIImage imageNamed:@"homePageBtn.png"]
+                   forState:UIControlStateNormal];
     
     if ([AppConfig(@"isAudioOpen") boolValue]) {
         [GlobalInstance playTipAudio:[[NSBundle mainBundle] URLForResource:@"drip" withExtension:@"WAV"]];
     }
     
-    [self dismissViewControllerAnimated:YES completion:^{
+    [self dismissViewControllerAnimated:YES
+                             completion:^{
         [[NSNotificationCenter defaultCenter]removeObserver:self name:CHECKBINDNOTIFICATION object:nil];
     }];
 }

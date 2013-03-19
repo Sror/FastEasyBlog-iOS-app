@@ -22,9 +22,12 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil
                bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil platform:TencentWeibo tabBarImgName:@"tencentWeibo_tabBarBG.png"];
+    self = [super initWithNibName:nibNameOrNil
+                           bundle:nibBundleOrNil
+                         platform:TencentWeibo
+                    tabBarImgName:@"tencentWeibo_tabBarBG.png"];
     if (self) {
-        // Custom initialization
+        
     }
     return self;
 }
@@ -38,7 +41,6 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

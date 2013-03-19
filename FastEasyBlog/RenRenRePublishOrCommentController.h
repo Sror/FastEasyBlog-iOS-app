@@ -26,23 +26,10 @@ ClickEventDelegate,
 RenrenDelegate,
 FollowedListControllerDelegate
 >{
-    UIPlaceHolderTextView *publishTxtView;
-    UIView *tipbarView;
-	UIView *toolbarView;
-    ClickableLabel *strLengthLabel;             //可點擊Label
     UIButton *delBtn;
     MTStatusBarOverlay *overlay;
 	
 	operateType _operateType;
-	
-	//外来参数相关
-	NSString *feedType;							//当前新鲜事类型
-	NSString *showTitle;						//用于在导航上显示的用户名称-评论XXX的XXX【不能为空】
-	NSString *theSubjectId;						//评论的主体对象的Id,日志 or 状态【不能为空】
-	NSString *ownerId;							//所属人Id，user or page【不能为空】
-	NSString *rid;								//二级回复Id，即回复某个“主体的回复”
-	NSString *commentType;						//回复类型：1(悄悄话)，0(公开)
-	NSString *sourceContent;					//原文-如果为转发，则需要携带原文
     
     id<rAndCDelegate> delegate;
 }

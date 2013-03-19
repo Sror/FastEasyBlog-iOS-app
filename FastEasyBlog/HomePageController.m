@@ -301,7 +301,10 @@ typedef enum {
     RenRenMainController *frontViewController;
 	RenRenFeedCategoryController *rearViewController;
     
-    frontViewController = [[RenRenMainController alloc] initWithNibName:@"RenRenMainView" bundle:nil];
+    CGRect tableViewFrame=CGRectMake(0, 0, WINDOWWIDTH, 436);
+    frontViewController=[[RenRenMainController alloc] initWithRefreshHeaderViewEnabled:YES andLoadMoreFooterViewEnabled:YES andTableViewFrame:tableViewFrame];
+    
+//    frontViewController = [[RenRenMainController alloc] initWithNibName:@"RenRenMainView" bundle:nil];
     rearViewController = [[RenRenFeedCategoryController alloc] initWithNibName:@"RenRenFeedCategoryView" bundle:nil];
     
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:frontViewController];

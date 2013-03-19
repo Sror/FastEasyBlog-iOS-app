@@ -12,12 +12,7 @@
 <
 UITableViewDelegate,
 UITableViewDataSource
-> {
-    IBOutlet UITableView *categoryTableView;
-	NSMutableDictionary *categoryDictionary;
-    NSMutableDictionary *categoryImages;
-    NSArray *categoryKeysArr;
-    
+> {    
     BOOL isFirstShow;
 }
 

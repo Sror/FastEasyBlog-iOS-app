@@ -2,7 +2,7 @@
 //  RenRenFeedCategoryController.m
 //  FastEasyBlog
 //
-//  Created by svp on 17.07.12.
+//  Created by yanghua on 17.07.12.
 //  Copyright 2012 yanghua_kobe. All rights reserved.
 //
 
@@ -150,7 +150,8 @@
     currentCell.isChecked=YES;
     
 	RevealController *revealController = [self.parentViewController isKindOfClass:[RevealController class]] ? (RevealController *)self.parentViewController : nil;
-    RenRenMainController *renrenMainController=[[RenRenMainController alloc]initWithNibName:@"RenRenMainView" bundle:nil];
+    CGRect tableViewFrame=CGRectMake(0, 0, WINDOWWIDTH, 436-64);
+    RenRenMainController *renrenMainController=[[RenRenMainController alloc] initWithRefreshHeaderViewEnabled:YES andLoadMoreFooterViewEnabled:YES andTableViewFrame:tableViewFrame];
     renrenMainController.currentCategories=[self.categoryDictionary objectForKey:[self.categoryKeysArr objectAtIndex:indexPath.row]];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:renrenMainController];
     navigationController.navigationBar.tintColor=defaultNavigationBGColor;
