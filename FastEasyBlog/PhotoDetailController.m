@@ -30,9 +30,6 @@
 
 @implementation PhotoDetailController
 
-@synthesize engine=_engine;
-@synthesize webView=_webView;
-@synthesize news=_news;
 @synthesize commentList;
 @synthesize selectedItem;
 @synthesize isPublishedPhoto;

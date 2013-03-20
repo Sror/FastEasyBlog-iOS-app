@@ -29,10 +29,8 @@
 
 @implementation PlatformBaseController
 
-@synthesize hud=_hud;
 @synthesize delegate,
             bindCheckHandleDelegate;
-@synthesize unBindView=_unBindView;
 
 - (void)dealloc{
     [_hud release],_hud=nil;

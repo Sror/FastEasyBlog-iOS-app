@@ -95,10 +95,6 @@
             userGroupedDictionary,
             allIndexCharacter;
 
-@synthesize currentLoadType=_currentLoadType;
-@synthesize currentPlatform=_currentPlatform;
-@synthesize nextCursor=_nextCursor;
-@synthesize prevCursor=_prevCursor;
 
 @synthesize reqnum;
 @synthesize startIndex;
@@ -107,7 +103,6 @@
 @synthesize pageForRenRen;
 @synthesize count;
 
-@synthesize loadMoreFooterView=_loadMoreFooterView;
 @synthesize point;
 @synthesize _reloading,_reloading1;
 @synthesize delegate;

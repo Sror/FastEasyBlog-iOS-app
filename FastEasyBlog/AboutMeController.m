@@ -21,8 +21,6 @@
 
 @implementation AboutMeController
 
-@synthesize webView=_webView;
-@synthesize engine=_engine;
 
 - (void)dealloc{
     [_webView release],_webView=nil;

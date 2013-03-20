@@ -79,20 +79,7 @@
 
 @implementation PublishController
 
-@synthesize photoArray=_photoArray;
-@synthesize publishTxtView=_publishTxtView;
-@synthesize tipbarView=_tipbarView;
-@synthesize toolbarView=_toolbarView;
-@synthesize renrenToolbarItem=_renrenToolbarItem;
-@synthesize tencentToolbarItem=_tencentToolbarItem;
-@synthesize sinaToolbarItem=_sinaToolbarItem;
-@synthesize tianyaToolbarItem=_tianyaToolbarItem;
-@synthesize strLengthLabel=_strLengthLabel;
 
-@synthesize delBtn=_delBtn;
-@synthesize plaformSwitch=_plaformSwitch;
-@synthesize engine=_engine;
-@synthesize overlay=_overlay;
 @synthesize photoPicker_;
 @synthesize actionSheetClickByView;
 

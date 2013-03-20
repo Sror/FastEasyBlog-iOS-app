@@ -80,12 +80,9 @@ typedef enum{
 
 @implementation RenRenMainController
 
-@synthesize photoArray=_photoArray;
 @synthesize imageDownloadsInProgress;
 @synthesize currentPage;
-@synthesize navigationBarPanGestureRecognizer = _navigationBarPanGestureRecognizer;
 @synthesize currentCategories;
-@synthesize tipBtn=_tipBtn;
 
 #pragma mark -
 - (void)dealloc {

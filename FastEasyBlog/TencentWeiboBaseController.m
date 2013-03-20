@@ -20,23 +20,18 @@
 
 @implementation TencentWeiboBaseController
 
-@synthesize photoArray=_photoArray;
-@synthesize imageDownloadsInProgress=_imageDownloadsInProgress;
 
 @synthesize point;
 @synthesize reloading;
 @synthesize reloading1;
 @synthesize pageFlag;
 @synthesize pageTime;
-@synthesize contentType=_contentType;
-@synthesize weiboType=_weiboType;
 
 @synthesize firstItemTimeStamp;
 @synthesize lastItemTimeStamp;
 
 - (void)dealloc{
     [_photoArray release],_photoArray=nil;
-    [_imageDownloadsInProgress release],_imageDownloadsInProgress=nil;
     
     [_contentType release],_contentType=nil;
     [_weiboType release],_weiboType=nil;

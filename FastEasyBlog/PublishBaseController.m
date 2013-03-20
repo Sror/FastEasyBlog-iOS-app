@@ -35,22 +35,8 @@ typedef enum{
 
 @implementation PublishBaseController
 
-@synthesize photoArray=_photoArray;
-@synthesize hud=_hud;
-@synthesize publishTxtView=_publishTxtView;
-@synthesize tipbarView=_tipbarView;
-@synthesize toolbarView=_toolbarView;
-@synthesize strLengthLabel=_strLengthLabel;
-@synthesize delBtn=_delBtn;
-@synthesize photoBtn=_photoBtn;
-@synthesize cameraBtn=_cameraBtn;
-@synthesize lbsPositionBtn=_lbsPositionBtn;
-@synthesize atBtn=_atBtn;
-@synthesize topicBtn=_topicBtn;
 
 @synthesize delegate;
-@synthesize currentPlatform=_currentPlatform;
-@synthesize followedList=_followedList;
 @synthesize currentActionType;
 
 - (void)dealloc{

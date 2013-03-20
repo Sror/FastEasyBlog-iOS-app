@@ -43,10 +43,6 @@ typedef enum{
 
 @implementation BlogDetailController
 
-@synthesize engine=_engine;
-@synthesize webView=_webView;
-@synthesize news=_news;
-@synthesize newsDetail=_newsDetail;
 @synthesize isLoadingBlog;
 @synthesize isPublishedBlog;
 @synthesize isSharedBlog;

@@ -53,8 +53,6 @@
 
 @implementation WeiboDetailController
 
-@synthesize engine=_engine;
-@synthesize webView=_webView;
 @synthesize currentPlatform;
 @synthesize sinaWeiboDetail;
 @synthesize tencentWeiboDetail;
@@ -64,8 +62,6 @@
 
 @synthesize tencentWeiboDataArr;
 
-@synthesize engineForRAndCList=_engineForRAndCList;
-@synthesize engineForRAndCNum=_engineForRAndCNum;
 
 @synthesize loadtypeForRePublish;
 @synthesize loadtypeForComment;

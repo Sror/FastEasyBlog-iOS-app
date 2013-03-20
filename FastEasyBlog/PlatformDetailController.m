@@ -20,8 +20,6 @@
 
 @implementation PlatformDetailController
 
-@synthesize hud=_hud;
-@synthesize toolbar=_toolbar;
 @synthesize delegate;
 
 - (void)dealloc{

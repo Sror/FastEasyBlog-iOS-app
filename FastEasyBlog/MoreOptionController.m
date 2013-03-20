@@ -18,9 +18,6 @@
 
 @implementation MoreOptionController
 
-@synthesize nightModeContainer=_nightModeContainer;
-@synthesize lightSettingContainer=_lightSettingContainer;
-@synthesize fontSizeSettingContainer=_fontSizeSettingContainer;
 
 @synthesize isNightMode;
 @synthesize lightValue;

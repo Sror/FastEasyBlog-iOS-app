@@ -29,8 +29,6 @@ MWPhotoBrowserDelegate
 >
 {
 	id<PublishBaseControllerDelegate> delegate;
-    AllPlatform currentPlatform;
-    NSMutableArray *followedList;
     
     NSString *publishingContent;
 }

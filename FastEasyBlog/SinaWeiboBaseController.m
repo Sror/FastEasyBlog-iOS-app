@@ -20,16 +20,12 @@
 @synthesize since_id;
 @synthesize max_id;
 
-@synthesize photoArray=_photoArray;
-@synthesize imageDownloadsInProgress=_imageDownloadsInProgress;
-@synthesize engine=_engine;
 
 - (void)dealloc{
     [since_id release],since_id=nil;
     [max_id release],max_id=nil;
     
     [_photoArray release],_photoArray=nil;
-    [_imageDownloadsInProgress release],_imageDownloadsInProgress=nil;
     _engine.delegate=nil;
     [_engine release],_engine=nil;
     

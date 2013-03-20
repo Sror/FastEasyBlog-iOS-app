@@ -22,7 +22,6 @@
 
 @implementation SinaWeiboPublishController
 
-@synthesize photoPicker=_photoPicker;
 
 - (void)dealloc{
     [_photoPicker release],_photoPicker=nil;

@@ -28,10 +28,7 @@
 @implementation FontSettingController
 
 @synthesize fontTableView;
-@synthesize dataSource=_dataSource;
-@synthesize keyArr=_keyArr;
 @synthesize currentFontName;
-@synthesize currentIndexPath=_currentIndexPath;
 
 - (void)dealloc{
     [fontTableView release],fontTableView=nil;

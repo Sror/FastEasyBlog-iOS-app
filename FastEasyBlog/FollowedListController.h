@@ -28,12 +28,10 @@ LoadMoreTableFooterDelegate,
 TencentWeiboDelegate,
 RenrenDelegate
 > {
-	IBOutlet UITableView *followedTableView;
-	NSMutableArray *followedList;
-	AllPlatform currentPlatform;
-    loadType currentLoadType;
+//	IBOutlet UITableView *followedTableView;
+//	NSMutableArray *followedList;
     
-	NSMutableDictionary *imageDownloadsInProgress;
+//	NSMutableDictionary *imageDownloadsInProgress;
     
     id<FollowedListControllerDelegate> delegate;
 }

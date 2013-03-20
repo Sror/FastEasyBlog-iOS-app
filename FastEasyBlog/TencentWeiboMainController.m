@@ -37,8 +37,6 @@ CGSizeMake(CELL_CONTENT_WIDTH-(CELL_CONTENT_MARGIN*2),20000.f)
 
 @implementation TencentWeiboMainController
 
-@synthesize groupOptions=_groupOptions;
-@synthesize tipBtn=_tipBtn;
 
 - (void)dealloc {
     [_groupOptions release],_groupOptions=nil;

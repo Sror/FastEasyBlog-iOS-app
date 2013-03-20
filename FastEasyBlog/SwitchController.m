@@ -24,17 +24,7 @@
 
 @implementation SwitchController
 
-@synthesize currentCtrller=_currentCtrller;
-@synthesize currentPlatform=_currentPlatform;
-@synthesize contentView=_contentView;
-@synthesize tabBarGuideImgView=_tabBarGuideImgView;
-@synthesize tabBarView=_tabBarView;
 @synthesize delegate;
-@synthesize childControllersArr=_childControllersArr;
-@synthesize childControllerNavTitlesArr=_childControllerNavTitlesArr;
-@synthesize customizedTitleView=_customizedTitleView;
-@synthesize navigationTitleLbl=_navigationTitleLbl;
-@synthesize popViewGuideImgBtn=_popViewGuideImgBtn;
 
 - (void)dealloc{
 	[_currentCtrller release],_currentCtrller=nil;

@@ -31,8 +31,6 @@ CGSizeMake(CELL_CONTENT_WIDTH-(CELL_CONTENT_MARGIN*2),20000.f)
 
 @implementation SinaWeiboMainController
 
-@synthesize groupOptions=_groupOptions;
-@synthesize tipBtn=_tipBtn;
 @synthesize feature;
 
 #pragma mark - methods -
