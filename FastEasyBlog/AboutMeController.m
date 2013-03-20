@@ -10,7 +10,7 @@
 #import "ICUTemplateMatcher.h"
 #import "MyHomePageController.h"
 
-#define TEMPLATE_PATH [[NSBundle mainBundle] pathForResource:@"aboutMe" ofType:@"html"]
+#define TEMPLATE_PATH [[NSBundle mainBundle] pathForResource:@"aboutMe" ofType:@"html"] 
 
 @interface AboutMeController ()
 
