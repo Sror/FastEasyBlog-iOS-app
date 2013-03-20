@@ -14,16 +14,9 @@
 
 @implementation SinaWeiboBaseController
 
-@synthesize loadtype;
-@synthesize count;
-@synthesize page;
-@synthesize since_id;
-@synthesize max_id;
-
-
 - (void)dealloc{
-    [since_id release],since_id=nil;
-    [max_id release],max_id=nil;
+    [_since_id release],_since_id=nil;
+    [_max_id release],_max_id=nil;
     
     [_photoArray release],_photoArray=nil;
     _engine.delegate=nil;

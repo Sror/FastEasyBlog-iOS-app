@@ -12,8 +12,6 @@
 <
 FollowedListControllerDelegate,
 PublishBaseControllerDelegate
->{
-    
-}
+>
 
 @end

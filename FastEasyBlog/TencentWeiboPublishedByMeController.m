@@ -27,13 +27,14 @@
 
 @implementation TencentWeiboPublishedByMeController
 
-@synthesize firstItemId;
-@synthesize lastItemId;
-@synthesize lastid;
+//@synthesize firstItemId;
+//@synthesize lastItemId;
+//@synthesize lastid;
 
 - (void)dealloc{
-    [firstItemId release],firstItemId=nil;
-    [lastItemId release],lastItemId=nil;
+    [_firstItemId release],_firstItemId=nil;
+    [_lastItemId release],_lastItemId=nil;
+    [_lastid release],_lastid=nil;
     
     [super dealloc];
 }
@@ -43,7 +44,7 @@
     self = [super initWithRefreshHeaderViewEnabled:enableRefreshHeaderView
                       andLoadMoreFooterViewEnabled:enableLoadMoreFooterView];
     if (self) {
-        lastid=@"0";
+        _lastid=@"0";
     }
     return self;
 }
@@ -92,7 +93,8 @@
     [myApi getMyPublishedTimeLineWithPageFlag:[NSString stringWithFormat:@"%ld",self.pageFlag] pageTime:[NSString stringWithFormat:@"%ld",self.pageTime] 
                                        reqNum:@"20" 
                                          type:self.weiboType 
-                                  contentType:self.contentType lastId:lastid];
+                                  contentType:self.contentType
+                                       lastId:self.lastid];
         
     [GlobalInstance showHUD:@"微博数据加载中,请稍后" 
                     andView:self.view 
@@ -159,7 +161,7 @@
     //load more
     self.loadMoreDataSourceFunc=^{
         blockedSelf.pageFlag=1;
-        lastid=lastItemId;          //加载更多
+        self.lastid=self.lastItemId;          //加载更多
         blockedSelf.pageTime=self.lastItemTimeStamp;
         
         [self loadWeiboList];
@@ -169,7 +171,7 @@
     //refresh
     self.refreshDataSourceFunc=^{
         blockedSelf.pageFlag=2;
-        lastid=firstItemId;         //刷新
+        self.lastid=self.firstItemId;         //刷新
         blockedSelf.pageTime=self.firstItemTimeStamp;
         
         [self loadWeiboList];
@@ -186,9 +188,9 @@
     TencentWeiboInfo *currentWeiboInfo=[self.dataSource objectAtIndex:indexPath.row];
     
     if (indexPath.row==0) {
-        firstItemId=currentWeiboInfo.uniqueId;
+        self.firstItemId=currentWeiboInfo.uniqueId;
     }else if (indexPath.row==[self.dataSource count]-1) {
-        lastItemId=currentWeiboInfo.uniqueId;
+        self.lastItemId=currentWeiboInfo.uniqueId;
     }
     
     return [super tableView:tableView cellForRowAtIndexPath:indexPath];

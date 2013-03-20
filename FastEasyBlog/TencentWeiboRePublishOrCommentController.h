@@ -27,21 +27,11 @@ TencentWeiboDelegate,
 UITextViewDelegate,
 FollowedListControllerDelegate
 >{
-    UIPlaceHolderTextView *publishTxtView;
-    UIView *tipbarView;
-	UIView *toolbarView;
-    ClickableLabel *strLengthLabel;             //可點擊Label
     UIButton *delBtn;
     MTStatusBarOverlay *overlay;
 	
 	operateType _operateType;
 	
-	//外来参数
-	NSString *showTitle;			//用于在导航上显示的用户名称-评论XXX的XXX【不能为空】
-	NSString *theSubjectId;			//评论的主体对象的Id,日志 or 状态【不能为空】
-	NSString *sourceContent;		//原文-如果为转发，则需要携带原文
-    
-    id<rAndCDelegate> delegate;     //评论的代理
 }
 
 @property (nonatomic,assign) id<rAndCDelegate> delegate;

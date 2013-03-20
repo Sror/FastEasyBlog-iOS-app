@@ -27,11 +27,10 @@
 
 @implementation TencentWeiboLoginController
 
-@synthesize loginWebView,
-			delegate;
+@synthesize delegate;
 
 - (void)dealloc {
-	[loginWebView release];
+	[_loginWebView release],_loginWebView=nil;
 	[_openSdkOauth release];
 	[super dealloc];
 }
@@ -71,7 +70,7 @@
 	[GlobalInstance writeConfigInfoToConfigFileWithValue:[OpenSdkBase getAppKey] forKey:@"appKey" forPlatform:TencentWeibo];
 	[GlobalInstance writeConfigInfoToConfigFileWithValue:[OpenSdkBase getAppSecret] forKey:@"appSecret" forPlatform:TencentWeibo];
 	
-	[_openSdkOauth doWebViewAuthorize:loginWebView];
+	[_openSdkOauth doWebViewAuthorize:self.loginWebView];
 	if (([OpenSdkBase getAppKey]==(NSString *)[NSNull null])||([OpenSdkBase getAppKey].length==0)) {
 		[OpenSdkBase showMessageBox:@"client_id为空，请到OpenSdkBase中填写您应用的appKey"];
 	}
@@ -128,11 +127,21 @@
 		
 		NSLog(@"token is %@, openid is %@, expireTime is %@", accessToken, openId, expirationDate);
 		
-		[GlobalInstance writeConfigInfoToConfigFileWithValue:accessToken forKey:@"accessToken" forPlatform:TencentWeibo];
-		[GlobalInstance writeConfigInfoToConfigFileWithValue:_openSdkOauth.accessSecret forKey:@"accessSecret" forPlatform:TencentWeibo];
-		[GlobalInstance writeConfigInfoToConfigFileWithValue:openId forKey:@"openId" forPlatform:TencentWeibo];
-		[GlobalInstance writeConfigInfoToConfigFileWithValue:openkey forKey:@"openKey" forPlatform:TencentWeibo];
-		[GlobalInstance writeConfigInfoToConfigFileWithValue:expirationDate forKey:@"expireIn" forPlatform:TencentWeibo];
+		[GlobalInstance writeConfigInfoToConfigFileWithValue:accessToken
+                                                      forKey:@"accessToken"
+                                                 forPlatform:TencentWeibo];
+		[GlobalInstance writeConfigInfoToConfigFileWithValue:_openSdkOauth.accessSecret
+                                                      forKey:@"accessSecret"
+                                                 forPlatform:TencentWeibo];
+		[GlobalInstance writeConfigInfoToConfigFileWithValue:openId
+                                                      forKey:@"openId"
+                                                 forPlatform:TencentWeibo];
+		[GlobalInstance writeConfigInfoToConfigFileWithValue:openkey
+                                                      forKey:@"openKey"
+                                                 forPlatform:TencentWeibo];
+		[GlobalInstance writeConfigInfoToConfigFileWithValue:expirationDate
+                                                      forKey:@"expireIn"
+                                                 forPlatform:TencentWeibo];
 		
 		if ((accessToken == (NSString *) [NSNull null]) || (accessToken.length == 0) 
 				|| (openId == (NSString *) [NSNull null]) || (openkey.length == 0) 
@@ -142,8 +151,8 @@
 		else {
 			[_openSdkOauth oauthDidSuccess:accessToken accessSecret:nil openid:openId openkey:openkey expireIn:expireIn];
 		}
-		loginWebView.delegate = nil;
-		[loginWebView setHidden:YES];
+		self.loginWebView.delegate = nil;
+		[self.loginWebView setHidden:YES];
 		
 		return NO;
 	}
@@ -161,7 +170,7 @@
  * 当网页视图结束加载一个请求后得到通知
  */
 - (void) webViewDidFinishLoad:(UIWebView *)webView {
-	NSString *url = loginWebView.request.URL.absoluteString;
+	NSString *url = self.loginWebView.request.URL.absoluteString;
 	NSLog(@"web view finish load URL %@", url);
 }
 
@@ -173,7 +182,7 @@
 	
 	if (!([error.domain isEqualToString:@"WebKitErrorDomain"] && error.code == 102)) {
 		[_openSdkOauth oauthDidFail:InWebView success:NO netNotWork:YES];
-		[loginWebView removeFromSuperview];
+		[self.loginWebView removeFromSuperview];
 	}
 }
 

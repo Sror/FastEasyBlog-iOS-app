@@ -21,7 +21,6 @@
 
 @implementation RenRenPublishController
 
-
 - (void)dealloc{
     [_photoPicker release],_photoPicker=nil;
     

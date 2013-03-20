@@ -20,16 +20,6 @@
 
 @implementation TencentWeiboBaseController
 
-
-@synthesize point;
-@synthesize reloading;
-@synthesize reloading1;
-@synthesize pageFlag;
-@synthesize pageTime;
-
-@synthesize firstItemTimeStamp;
-@synthesize lastItemTimeStamp;
-
 - (void)dealloc{
     [_photoArray release],_photoArray=nil;
     
@@ -500,9 +490,9 @@
     }
     
     if (indexPath.row==0) {
-        firstItemTimeStamp=currentWeiboInfo.timestamp;
+        self.firstItemTimeStamp=currentWeiboInfo.timestamp;
     }else if (indexPath.row==[self.dataSource count]-1) {
-        lastItemTimeStamp=currentWeiboInfo.timestamp;
+        self.lastItemTimeStamp=currentWeiboInfo.timestamp;
     }
     
     [cell resizeViewFrames];

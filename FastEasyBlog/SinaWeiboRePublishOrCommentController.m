@@ -16,23 +16,14 @@
 
 @implementation SinaWeiboRePublishOrCommentController
 
-@synthesize publishTxtView,
-            tipbarView,
-            strLengthLabel,
-			theSubjectId,
-            showTitle,
-			sourceContent,
-            sourceId,
-            delegate;
-			
 - (void)dealloc{
-	[publishTxtView release],publishTxtView=nil;
-    [tipbarView release],tipbarView=nil;
-    [strLengthLabel release],strLengthLabel=nil;	
-	[showTitle release],showTitle=nil;
-	[theSubjectId release],theSubjectId=nil;
-	[sourceContent release],sourceContent=nil;
-    [sourceId release],sourceId=nil;
+	[_publishTxtView release],_publishTxtView=nil;
+    [_tipbarView release],_tipbarView=nil;
+    [_strLengthLabel release],_strLengthLabel=nil;
+	[_showTitle release],_showTitle=nil;
+	[_theSubjectId release],_theSubjectId=nil;
+	[_sourceContent release],_sourceContent=nil;
+    [_sourceId release],_sourceId=nil;
 	[engine release],engine=nil;
     engine.delegate=nil;
 	[super dealloc];

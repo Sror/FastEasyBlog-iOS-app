@@ -31,11 +31,10 @@ CGSizeMake(CELL_CONTENT_WIDTH-(CELL_CONTENT_MARGIN*2),20000.f)
 
 @implementation SinaWeiboMainController
 
-@synthesize feature;
 
 #pragma mark - methods -
 - (void)dealloc {
-    [feature release],feature=nil;
+    [_feature release],_feature=nil;
     [_groupOptions release],_groupOptions=nil;
     [super dealloc];
 }

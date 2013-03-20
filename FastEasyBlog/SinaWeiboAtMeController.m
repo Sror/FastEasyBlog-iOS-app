@@ -16,7 +16,6 @@
 
 @implementation SinaWeiboAtMeController
 
-
 - (void)dealloc{
 	[super dealloc];
 }

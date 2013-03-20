@@ -27,22 +27,11 @@ ClickEventDelegate,
 WBEngineDelegate,
 FollowedListControllerDelegate
 >{
-	UIPlaceHolderTextView *publishTxtView;
-    UIView *tipbarView;
-    ClickableLabel *strLengthLabel;             //可點擊Label
     UIButton *delBtn;
     MTStatusBarOverlay *overlay;
 	
 	operateType _operateType;					
 	WBEngine *engine;
-	
-	//外来参数
-	NSString *showTitle;						//用于在导航上显示的用户名称-评论XXX的XXX【不能为空】
-	NSString *theSubjectId;						//评论的微博对象的Id【不能为空】
-	NSString *sourceContent;					//原文-如果为转发，则需要携带原文
-    NSString *sourceId;
-	
-	id<rAndCDelegate> delegate;
 }
 
 @property (nonatomic,assign) id<rAndCDelegate>          delegate;

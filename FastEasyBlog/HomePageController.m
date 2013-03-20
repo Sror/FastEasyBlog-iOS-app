@@ -53,15 +53,6 @@ typedef enum {
 
 @implementation HomePageController
 
-@synthesize backgroundImgView=_backgroundImgView,
-            sinaWeiboBtn=_sinaWeiboBtn,
-            tencentWeiboBtn=_tencentWeiboBtn,
-            renrenBtn=_renrenBtn,
-            tianyaBtn=_tianyaBtn,
-            shareBtn=_shareBtn,
-            settingBtn=_settingBtn,
-            tipBtn=_tipBtn,
-            skinBtn=_skinBtn;
 
 - (void)dealloc{
     [[NSNotificationCenter defaultCenter]removeObserver:self name:CHECKBINDNOTIFICATIONINHOMEPAGE object:nil];

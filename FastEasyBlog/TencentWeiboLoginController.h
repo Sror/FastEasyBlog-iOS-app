@@ -16,7 +16,6 @@
 UIWebViewDelegate,
 TencentWeiboDelegate
 > {
-	IBOutlet UIWebView *loginWebView;
 	OpenSdkOauth *_openSdkOauth;
 	id<TencentWeiboLoginControllerDelegate> delegate;
 }

@@ -20,10 +20,8 @@ static FEBAppConfig *sharedInstance;
 
 @implementation FEBAppConfig
 
-@synthesize config;
-
 - (void)dealloc{
-	[config release],config=nil;
+	[_config release],_config=nil;
 	[super dealloc];
 }
 

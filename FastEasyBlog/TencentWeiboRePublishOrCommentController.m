@@ -39,24 +39,16 @@
 
 @implementation TencentWeiboRePublishOrCommentController
 
-@synthesize publishTxtView,
-            tipbarView,
-            toolbarView,
-            strLengthLabel,
-			theSubjectId,
-            showTitle,
-			sourceContent,
-            delegate;
 
 - (void)dealloc{
-    [publishTxtView release],publishTxtView=nil;
-    [tipbarView release],tipbarView=nil;
-    [toolbarView release],toolbarView=nil;
-    [strLengthLabel release],strLengthLabel=nil;
-    [theSubjectId release],theSubjectId=nil;
+    [_publishTxtView release],_publishTxtView=nil;
+    [_tipbarView release],_tipbarView=nil;
+    [_toolbarView release],_toolbarView=nil;
+    [_strLengthLabel release],_strLengthLabel=nil;
+    [_theSubjectId release],_theSubjectId=nil;
 	
-	[showTitle release],showTitle=nil;
-    [sourceContent release],sourceContent=nil;
+	[_showTitle release],_showTitle=nil;
+    [_sourceContent release],_sourceContent=nil;
     [super dealloc];
 }
 

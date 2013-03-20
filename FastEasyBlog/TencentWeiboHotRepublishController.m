@@ -27,11 +27,6 @@
 
 @implementation TencentWeiboHotRepublishController
 
-@synthesize loadtype;
-@synthesize pos;
-@synthesize oldPos;
-@synthesize contentType;
-
 #pragma mark -
 - (void)dealloc{    
     [super dealloc];
@@ -89,8 +84,8 @@
     OpenApi *myApi=[TencentWeiboManager getOpenApi];
     myApi.delegate=self;
 
-    [myApi getHotRepublishWeiboList:contentType
-                                pos:[NSString stringWithFormat:@"%d",pos]
+    [myApi getHotRepublishWeiboList:self.contentType
+                                pos:[NSString stringWithFormat:@"%d",self.pos]
                              reqNum:@"20"];
     
     [GlobalInstance showHUD:@"微博数据加载中,请稍后..."
@@ -102,7 +97,7 @@
 
 #pragma mark - tencentweibo delegate -
 -(void)tencentWeiboRequestDidReturnResponse:(TencentWeiboList *)result{
-    switch (loadtype) {
+    switch (self.loadtype) {
         case firstLoad:
             self.dataSource=result.list;
             self.pos=[result.pos intValue];
@@ -159,15 +154,15 @@
     
     //load more
     self.loadMoreDataSourceFunc=^{
-        loadtype=loadMore;
+        self.loadtype=loadMore;
         [self loadweiboList];
         self.reloading1=YES;
     };
     
     //refresh
     self.refreshDataSourceFunc=^{
-        pos=0;
-        loadtype=refresh;
+        self.pos=0;
+        self.loadtype=refresh;
         [self loadweiboList];
         self.reloading=YES;
     };
