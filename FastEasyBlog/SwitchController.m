@@ -9,6 +9,7 @@
 #import "SwitchController.h"
 #import "SinaWeiboPublishController.h"
 #import "TencentWeiboPublishController.h"
+#import "UIControl+BlockKits.h"
 
 @interface SwitchController ()
 
@@ -220,11 +221,19 @@
  *为导航栏设置左侧自定义按钮
  */
 -(void)setLeftBarButtonForNavigationBar{
-	UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
-	btn.frame=CGRectMake(10,0,45,45);
-	[btn setBackgroundImage:[UIImage imageNamed:@"homePageBtn.png"] forState:UIControlStateNormal];
-	[btn addTarget:self action:@selector(homePageBtn_TouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
-	[btn addTarget:self action:@selector(homePageBtn_TouchDown:) forControlEvents:UIControlEventTouchDown];
+//	UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
+//	btn.frame=CGRectMake(10,0,45,45);
+//	[btn setBackgroundImage:[UIImage imageNamed:@"homePageBtn.png"] forState:UIControlStateNormal];
+//	[btn addTarget:self action:@selector(homePageBtn_TouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+//	[btn addTarget:self action:@selector(homePageBtn_TouchDown:) forControlEvents:UIControlEventTouchDown];
+    
+    UIButton *btn=[UIButton initButtonInstanceWithType:UIButtonTypeCustom
+                                   frame:CGRectMake(10,0,45,45)
+                                 imgName:@"homePageBtn.png"
+                             eventTarget:self
+                             touchUpFunc:@selector(homePageBtn_TouchUpInside:)
+                           touchDownFunc:@selector(homePageBtn_TouchDown:)];
+    
 	UIBarButtonItem *menuBtn=[[UIBarButtonItem alloc]initWithCustomView:btn];
 	self.navigationItem.leftBarButtonItem=menuBtn;
 	[menuBtn release];

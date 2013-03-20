@@ -244,11 +244,14 @@
 	[strLabel release];
     
     //設置刪除按鈕
-    _delBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    self.delBtn.frame=CGRectMake(x_lbl+self.strLengthLabel.frame.size.width, 5, 16, 16);
-    [self.delBtn setBackgroundImage:[UIImage imageNamed:@"deleteBtn.png"] forState:UIControlStateNormal];
+    _delBtn=[UIButton initButtonInstanceWithType:UIButtonTypeCustom
+                                           frame:CGRectMake(x_lbl+self.strLengthLabel.frame.size.width, 5, 16, 16)
+                                         imgName:@"deleteBtn.png"
+                                     eventTarget:self
+                                     touchUpFunc:@selector(doClickAtTarget:)
+                                   touchDownFunc:nil];
     self.delBtn.hidden=YES;
-    [self.delBtn addTarget:self action:@selector(doClickAtTarget:) forControlEvents:UIControlEventTouchUpInside];
+    
     [self.tipbarView addSubview:self.delBtn];
 }
 
@@ -267,11 +270,13 @@
  *为导航栏设置右侧的自定义按钮
  */
 -(void)setRightBarButtonForNavigationBar{
-	UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
-	btn.frame=CGRectMake(285,0,50,50);
-	[btn setBackgroundImage:[UIImage imageNamed:@"publishBtn.png"] forState:UIControlStateNormal];
-	[btn addTarget:self action:@selector(publish_click) forControlEvents:UIControlEventTouchUpInside];
-	[btn addTarget:self action:@selector(publish_touchDown) forControlEvents:UIControlEventTouchDown];
+    UIButton *btn=[UIButton initButtonInstanceWithType:UIButtonTypeCustom
+                                                 frame:CGRectMake(285,0,50,50)
+                                               imgName:@"publishBtn.png"
+                                           eventTarget:self
+                                           touchUpFunc:@selector(publish_click)
+                                         touchDownFunc:@selector(publish_touchDown)];
+    
 	UIBarButtonItem *menuBtn=[[UIBarButtonItem alloc]initWithCustomView:btn];
 	self.navigationItem.rightBarButtonItem=menuBtn;
 	[menuBtn release];
@@ -281,11 +286,12 @@
  *为导航栏设置左侧的自定义返回按钮
  */
 -(void)setLeftBarButtonForNavigationBar{
-	UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
-	btn.frame=CGRectMake(0, 0, 45, 45);
-	[btn setBackgroundImage:[UIImage imageNamed:@"closeBtn.png"] forState:UIControlStateNormal];
-	[btn addTarget:self action:@selector(closeButton_touchUpInside) forControlEvents:UIControlEventTouchUpInside];
-	[btn addTarget:self action:@selector(closeButton_touchDown) forControlEvents:UIControlEventTouchDown];		//按下替换为高亮图片
+    UIButton *btn=[UIButton initButtonInstanceWithType:UIButtonTypeCustom
+                                                 frame:CGRectMake(0, 0, 45, 45)
+                                               imgName:@"closeBtn.png"
+                                           eventTarget:self
+                                           touchUpFunc:@selector(closeButton_touchUpInside)
+                                         touchDownFunc:@selector(closeButton_touchDown)];
 	
 	UIBarButtonItem *backBarItem=[[UIBarButtonItem alloc]initWithCustomView:btn];
 	self.navigationItem.leftBarButtonItem=backBarItem;
@@ -308,18 +314,22 @@
  *设置输入框下方自定义工具栏
  */
 -(void)setCustomToolbarItems{
-    //圖片按鈕
-    UIButton *photoBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    photoBtn.frame=CGRectMake(5, 0, 25, 25);
-    [photoBtn setBackgroundImage:[UIImage imageNamed:@"photoBtn.png"] forState:UIControlStateNormal];
-    [photoBtn addTarget:self action:@selector(photoToolBar_click:) forControlEvents:UIControlEventTouchUpInside];
+    //圖片
+    UIButton *photoBtn=[UIButton initButtonInstanceWithType:UIButtonTypeCustom
+                                                      frame:CGRectMake(5, 0, 25, 25)
+                                                    imgName:@"photoBtn.png"
+                                                eventTarget:self
+                                                touchUpFunc:@selector(photoToolBar_click)
+                                              touchDownFunc:nil];
     [self.toolbarView addSubview:photoBtn];
     
     //拍照
-    UIButton *cameraBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    cameraBtn.frame=CGRectMake(55,0,25,25);
-    [cameraBtn setBackgroundImage:[UIImage imageNamed:@"cameraBtn.png"] forState:UIControlStateNormal];
-    [cameraBtn addTarget:self action:@selector(cameraToolbar_click:) forControlEvents:UIControlEventTouchUpInside];
+    UIButton *cameraBtn=[UIButton initButtonInstanceWithType:UIButtonTypeCustom
+                                                      frame:CGRectMake(55,0,25,25)
+                                                    imgName:@"cameraBtn.png"
+                                                eventTarget:self
+                                                touchUpFunc:@selector(cameraToolbar_click)
+                                              touchDownFunc:nil];
     [self.toolbarView addSubview:cameraBtn];
     
     //地理位置

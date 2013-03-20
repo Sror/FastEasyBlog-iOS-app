@@ -122,10 +122,17 @@
  *为导航栏设置左侧的自定义返回按钮
  */
 -(void)setLeftBarButtonForNavigationBar{
-	UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
-	btn.frame=CGRectMake(0, 0, 45, 45);
-	[btn setBackgroundImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
-	[btn addTarget:self action:@selector(back_TouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+//	UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
+//	btn.frame=CGRectMake(0, 0, 45, 45);
+//	[btn setBackgroundImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+//	[btn addTarget:self action:@selector(back_TouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *btn=[UIButton initButtonInstanceWithType:UIButtonTypeCustom
+                                                 frame:CGRectMake(0, 0, 45, 45)
+                                               imgName:@"back.png"
+                                           eventTarget:self
+                                           touchUpFunc:@selector(back_TouchUpInside:)
+                                         touchDownFunc:nil];
 	
 	UIBarButtonItem *backBarItem=[[UIBarButtonItem alloc]initWithCustomView:btn];
 	self.navigationItem.leftBarButtonItem=backBarItem;

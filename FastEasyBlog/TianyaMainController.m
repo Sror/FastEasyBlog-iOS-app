@@ -29,7 +29,7 @@
     //super.bindCheckHandleDelegate=self;
     self.navigationItem.title=@"天涯社区";
     [self setLeftBarButtonForNavigationBar];
-    UIImageView *unDoView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, WINDOWWIDTH, 416)];
+    UIImageView *unDoView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, WINDOWWIDTH, 416)];
     unDoView.image=[UIImage imageNamed:@"undo.png"];
     [self.view addSubview:unDoView];
     [self.view bringSubviewToFront:unDoView];
@@ -50,7 +50,8 @@
 -(void)setLeftBarButtonForNavigationBar{
 	UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
 	btn.frame=CGRectMake(10,0,45,45);
-	[btn setBackgroundImage:[UIImage imageNamed:@"homePageBtn.png"] forState:UIControlStateNormal];
+	[btn setBackgroundImage:[UIImage imageNamed:@"homePageBtn.png"]
+                   forState:UIControlStateNormal];
 	[btn addTarget:self action:@selector(homePageBtn_TouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
 	[btn addTarget:self action:@selector(homePageBtn_TouchDown:) forControlEvents:UIControlEventTouchDown];
 	UIBarButtonItem *menuBtn=[[UIBarButtonItem alloc]initWithCustomView:btn];

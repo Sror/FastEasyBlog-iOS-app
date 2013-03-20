@@ -79,49 +79,70 @@ typedef enum {
         _backgroundImgView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, WINDOWWIDTH, WINDOWHEIGHT)];
         _backgroundImgView.image=[UIImage imageNamed:@"defaultBG.png"];
         
-        //皮肤按钮
-        _skinBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-        _skinBtn.frame=CGRectMake(275, 420, 33, 30);
-        [_skinBtn setBackgroundImage:[UIImage imageNamed:@"skinBtn.png"] forState:UIControlStateNormal];
-        [_skinBtn addTarget:self action:@selector(skinButton_touchUpInside:) forControlEvents:UIControlEventTouchUpInside];
         
-        _sinaWeiboBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-        _sinaWeiboBtn.frame=CGRectMake(60, 70, 89, 89);
-		_sinaWeiboBtn.tag=1000;
-		[_sinaWeiboBtn addTarget:self action:@selector(button_TouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+        _skinBtn=[UIButton initButtonInstanceWithType:UIButtonTypeCustom
+                                                frame:CGRectMake(275, 420, 33, 30)
+                                              imgName:@"skinBtn.png"
+                                          eventTarget:self
+                                          touchUpFunc:@selector(skinButton_touchUpInside:)
+                                        touchDownFunc:nil];
         
-        _tencentWeiboBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-        _tencentWeiboBtn.frame=CGRectMake(171, 70, 89, 89);
-		_tencentWeiboBtn.tag=1001;
-		[_tencentWeiboBtn addTarget:self action:@selector(button_TouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+        _sinaWeiboBtn=[UIButton initButtonInstanceWithType:UIButtonTypeCustom
+                                                     frame:CGRectMake(60, 70, 89, 89)
+                                               eventTarget:self
+                                               touchUpFunc:@selector(button_TouchUpInside:)
+                                             touchDownFunc:nil];
+        _sinaWeiboBtn.tag=1000;
         
-        _renrenBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-        _renrenBtn.frame=CGRectMake(60, 185, 89, 89);
-		_renrenBtn.tag=1002;
-		[_renrenBtn addTarget:self action:@selector(button_TouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+        _tencentWeiboBtn=[UIButton initButtonInstanceWithType:UIButtonTypeCustom
+                                                     frame:CGRectMake(171, 70, 89, 89)
+                                               eventTarget:self
+                                               touchUpFunc:@selector(button_TouchUpInside:)
+                                             touchDownFunc:nil];
+        _tencentWeiboBtn.tag=1001;
         
-        _tianyaBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-        _tianyaBtn.frame=CGRectMake(171, 185, 89, 89);
-		_tianyaBtn.tag=1003;
-		[_tianyaBtn addTarget:self action:@selector(button_TouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+        _renrenBtn=[UIButton initButtonInstanceWithType:UIButtonTypeCustom
+                                                        frame:CGRectMake(60, 185, 89, 89)
+                                                  eventTarget:self
+                                                  touchUpFunc:@selector(button_TouchUpInside:)
+                                                touchDownFunc:nil];
+        _renrenBtn.tag=1002;
         
-        _shareBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-        _shareBtn.frame=CGRectMake(60, 300, 89, 89);
-		_shareBtn.tag=1004;
-        [_shareBtn setBackgroundImage:[UIImage imageNamed:@"share_homePage.png"] forState:UIControlStateNormal];
-		[_shareBtn addTarget:self action:@selector(button_TouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+        _tianyaBtn=[UIButton initButtonInstanceWithType:UIButtonTypeCustom
+                                                  frame:CGRectMake(171, 185, 89, 89)
+                                            eventTarget:self
+                                            touchUpFunc:@selector(button_TouchUpInside:)
+                                          touchDownFunc:nil];
+        _tianyaBtn.tag=1003;
         
-        _settingBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-        _settingBtn.frame=CGRectMake(171, 300, 89, 89);
-		_settingBtn.tag=1005;
-        [_settingBtn setBackgroundImage:[UIImage imageNamed:@"setting_homePage.png"] forState:UIControlStateNormal];
-		[_settingBtn addTarget:self action:@selector(button_TouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+        _shareBtn=[UIButton initButtonInstanceWithType:UIButtonTypeCustom
+                                                 frame:CGRectMake(60, 300, 89, 89)
+                                               imgName:@"share_homePage.png"
+                                           eventTarget:self
+                                           touchUpFunc:@selector(button_TouchUpInside:)
+                                         touchDownFunc:nil];
+        _shareBtn.tag=1004;
+        
+        _settingBtn=[UIButton initButtonInstanceWithType:UIButtonTypeCustom
+                                                   frame:CGRectMake(171, 300, 89, 89)
+                                                 imgName:@"setting_homePage.png"
+                                             eventTarget:self
+                                             touchUpFunc:@selector(button_TouchUpInside:)
+                                           touchDownFunc:nil];
+        _settingBtn.tag=1005;
         
         if (![AppConfig(@"homePage_tip_hasShown") boolValue]) {
-            _tipBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-            _tipBtn.frame=CGRectMake(0, 0, WINDOWWIDTH, WINDOWHEIGHT-STATUSBARHEIGHT);
-            [_tipBtn setBackgroundImage:[UIImage imageNamed:@"homePage_tip.png"] forState:UIControlStateNormal];
-            [_tipBtn addTarget:self action:@selector(tipButton_touchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+//            _tipBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+//            _tipBtn.frame=CGRectMake(0, 0, WINDOWWIDTH, WINDOWHEIGHT-STATUSBARHEIGHT);
+//            [_tipBtn setBackgroundImage:[UIImage imageNamed:@"homePage_tip.png"] forState:UIControlStateNormal];
+//            [_tipBtn addTarget:self action:@selector(tipButton_touchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+            
+            _tipBtn=[UIButton initButtonInstanceWithType:UIButtonTypeCustom
+                                                   frame:CGRectMake(0, 0, WINDOWWIDTH, WINDOWHEIGHT-STATUSBARHEIGHT)
+                                                 imgName:@"homePage_tip.png"
+                                             eventTarget:self
+                                             touchUpFunc:@selector(tipButton_touchUpInside:)
+                                           touchDownFunc:nil];
         }
     }
     return self;

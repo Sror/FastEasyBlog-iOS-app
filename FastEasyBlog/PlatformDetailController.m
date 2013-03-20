@@ -121,10 +121,12 @@
 
 #pragma mark - private method -
 - (void)setNavigationBarItem{
-    UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame=CGRectMake(0, 0, 45, 45);
-    [btn setBackgroundImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(back_click) forControlEvents:UIControlEventTouchUpInside];
+    UIButton *btn=[UIButton initButtonInstanceWithType:UIButtonTypeCustom
+                                       frame:CGRectMake(0, 0, 45, 45)
+                                     imgName:@"back.png"
+                                 eventTarget:self
+                                 touchUpFunc:@selector(back_click)
+                               touchDownFunc:nil];
     
     UIBarButtonItem *backBarItem=[[UIBarButtonItem alloc]initWithCustomView:btn];
     self.navigationItem.leftBarButtonItem=backBarItem;

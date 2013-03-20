@@ -13,6 +13,7 @@
 	#import "FEBAppConfig.h"
     #import "FastEasyBlogAppDelegate.h"
     #import "RegexKitLite.h"
+    #import "UIControl+BlockKits.h"
 #endif
 
 #define AppConfig(x) [[FEBAppConfig sharedAppConfig] objectForKey:x]
