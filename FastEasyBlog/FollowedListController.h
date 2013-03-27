@@ -27,14 +27,7 @@ WBEngineDelegate,
 LoadMoreTableFooterDelegate,
 TencentWeiboDelegate,
 RenrenDelegate
-> {
-//	IBOutlet UITableView *followedTableView;
-//	NSMutableArray *followedList;
-    
-//	NSMutableDictionary *imageDownloadsInProgress;
-    
-    id<FollowedListControllerDelegate> delegate;
-}
+>
 
 @property (nonatomic,retain) IBOutlet UITableView *followedTableView;
 @property (nonatomic,retain) NSMutableArray *followedList;

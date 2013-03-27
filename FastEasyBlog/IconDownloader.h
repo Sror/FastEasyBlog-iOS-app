@@ -20,19 +20,8 @@
 
 
 @interface IconDownloader : NSObject {
-	UIImage *appIcon;
-	NSString *imgUrl;
-	
-	float imgWidth;
-	float imgHeight;
-	
-	NSIndexPath *indexPathInTableView;
-    NSString *imgKey;                 //支持单元格中，多图片下载
-	id <IconDownloaderDelegate> delegate;
-    Class _originalClass;             //保存delegate的原始类型，处理delegate提前被释放的问题
-	
-	NSMutableData *activeDownload;
-	NSURLConnection *imageConnection;
+    //保存delegate的原始类型，处理delegate提前被释放的问题
+    Class _originalClass;
 }
 
 @property (nonatomic,retain) UIImage *appIcon;

@@ -2,7 +2,7 @@
 //  IconDownloader.m
 //  RenRenTest
 //
-//  Created by svp on 10.06.12.
+//  Created by yanghua on 10.06.12.
 //  Copyright 2012 yanghua_kobe. All rights reserved.
 //
 
@@ -12,24 +12,14 @@ Class object_getClass(id object);
 
 @implementation IconDownloader
 
-@synthesize appIcon;
-@synthesize imgUrl;
-@synthesize imgWidth;
-@synthesize imgHeight;
-@synthesize indexPathInTableView;
-@synthesize imgKey;
-@synthesize delegate;
-@synthesize activeDownload;
-@synthesize imageConnection;
-
 -(void)dealloc{
-	[appIcon release];
-	[imgUrl release];
-	[indexPathInTableView release];
-    [imgKey release];
-	[activeDownload release];
-	[imageConnection cancel];
-	[imageConnection release];
+	[_appIcon release],_appIcon=nil;
+	[_imgUrl release],_imgUrl=nil;
+	[_indexPathInTableView release],_indexPathInTableView=nil;
+    [_imgKey release],_imgKey=nil;
+	[_activeDownload release],_activeDownload=nil;
+	[_imageConnection cancel];
+	[_imageConnection release],_imageConnection=nil;
 	
 	[super dealloc];
 }
@@ -38,7 +28,7 @@ Class object_getClass(id object);
     self.activeDownload=[NSMutableData data];
     //异步加载图片
     NSURLConnection *conn=[[NSURLConnection alloc] initWithRequest:
-                           [NSURLRequest requestWithURL:[NSURL URLWithString:imgUrl]] delegate:self];
+                           [NSURLRequest requestWithURL:[NSURL URLWithString:self.imgUrl]] delegate:self];
     
     self.imageConnection=conn;
     [conn release];
@@ -66,9 +56,9 @@ Class object_getClass(id object);
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection{
     UIImage *image=[[UIImage alloc]initWithData:self.activeDownload];
     
-    if ((image.size.width!=imgWidth || image.size.height!=imgHeight)&&
-        (imgWidth+imgHeight!=0)) {
-        CGSize itemSize=CGSizeMake(imgWidth, imgHeight);
+    if ((image.size.width!=self.imgWidth || image.size.height!=self.imgHeight)&&
+        (self.imgWidth+self.imgHeight!=0)) {
+        CGSize itemSize=CGSizeMake(self.imgWidth, self.imgHeight);
         UIGraphicsBeginImageContext(itemSize);
         CGRect imageRect=CGRectMake(0.0, 0.0, itemSize.width, itemSize.height);
         [image drawInRect:imageRect];
@@ -85,20 +75,20 @@ Class object_getClass(id object);
     
     //解决：下载没有结束，controller已被释放带来的代理方法调用失败的问题
     //added by:yh       Date:2012-09-08
-    Class _currentClass=object_getClass(delegate);
+    Class _currentClass=object_getClass(self.delegate);
     if (_currentClass==_originalClass) {
         if (self.imgKey&&(![self.imgKey isEqualToString:@""])) {
-            [delegate appImageDidLoad:self.indexPathInTableView forKey:self.imgKey];
+            [self.delegate appImageDidLoad:self.indexPathInTableView forKey:self.imgKey];
         }else{
-            [delegate appImageDidLoad:self.indexPathInTableView];
+            [self.delegate appImageDidLoad:self.indexPathInTableView];
         }
     }
 }
 
 #pragma mark -override setter-
--(void)setDelegate:(id<IconDownloaderDelegate>)_delegate{
-    if (_delegate!=delegate) {
-        delegate=_delegate;
+-(void)setDelegate:(id<IconDownloaderDelegate>)delegate_{
+    if (_delegate!=delegate_) {
+        _delegate=delegate_;
         _originalClass=object_getClass(_delegate);
     }
 }

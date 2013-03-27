@@ -508,4 +508,14 @@ static Global *_global;
     AudioServicesPlaySystemSound(soundId);
 }
 
+/**
+ *判断一个字符是不是中文
+ */
+- (BOOL)isChineseCharacter:(int)charWithASII{
+    if( charWithASII > 0x4e00 && charWithASII < 0x9fff)
+        return YES;
+    
+    return NO;
+}
+
 @end

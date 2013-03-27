@@ -212,4 +212,8 @@ typedef enum{
 //播放提示音
 -(void)playTipAudio:(NSURL*)audioFileUrl;
 
+#pragma mark - text -
+//判断一个字符是不是中文
+- (BOOL)isChineseCharacter:(int)charWithASII;
+
 @end

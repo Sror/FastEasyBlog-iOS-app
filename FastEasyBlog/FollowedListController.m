@@ -24,10 +24,6 @@
 //设置“刷新”和“加载更多”视图
 - (void)initRefreshAndLoadMoreView;
 
-//下拉刷新
-//-(void)reloadTableViewDataSource;
-//-(void)doneLoadingTableViewData;
-
 //上提加载更多
 -(void)reloadTableViewDataSource1;
 -(void)doneLoadingTableViewData1;
@@ -94,19 +90,6 @@
             imageDownloadsInProgress,
             userGroupedDictionary,
             allIndexCharacter;
-
-
-@synthesize reqnum;
-@synthesize startIndex;
-@synthesize page;
-
-@synthesize pageForRenRen;
-@synthesize count;
-
-@synthesize point;
-@synthesize _reloading,_reloading1;
-@synthesize delegate;
-
 
 - (void)dealloc {
     [followedTableView release],followedTableView=nil;
@@ -344,7 +327,7 @@
         case loadMore:
         {
             self.startIndex=(self.page-1)*30;
-            [myApi getMyIdollist:@"json" reqnum:@"30" startIndex:[NSString stringWithFormat:@"%d",startIndex] install:@"0"];
+            [myApi getMyIdollist:@"json" reqnum:@"30" startIndex:[NSString stringWithFormat:@"%d",self.startIndex] install:@"0"];
         }
             break;
             
@@ -364,7 +347,7 @@
 	NSMutableDictionary *params=[NSMutableDictionary dictionaryWithCapacity:10];
 	[params setObject:@"friends.getFriends" forKey:@"method"];
 	[params setObject:@"JSON" forKey:@"format"];
-	[params setObject:[NSString stringWithFormat:@"%d",pageForRenRen] forKey:@"page"];
+	[params setObject:[NSString stringWithFormat:@"%d",self.pageForRenRen] forKey:@"page"];
 	[params setObject:@"500" forKey:@"count"];
     [params setObject:@"" forKey:@"fields"];
 	[[Renren sharedRenren]requestWithParams:params andDelegate:self];
@@ -536,11 +519,6 @@
  *为导航栏设置左侧的自定义返回按钮
  */
 -(void)setLeftBarButtonForNavigationBar{
-//	UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
-//	btn.frame=CGRectMake(0, 0, 45, 45);
-//	[btn setBackgroundImage:[UIImage imageNamed:@"closeBtn.png"] forState:UIControlStateNormal];
-//	[btn addTarget:self action:@selector(closeButton_touchUpInside) forControlEvents:UIControlEventTouchUpInside];
-//	[btn addTarget:self action:@selector(closeButton_touchDown) forControlEvents:UIControlEventTouchDown];
     
     UIButton *btn=[UIButton initButtonInstanceWithType:UIButtonTypeCustom
                                                  frame:CGRectMake(0, 0, 45, 45)
@@ -590,13 +568,13 @@
  */
 -(void)reloadTableViewDataSource1{
     if (self.currentPlatform==TencentWeibo) {
-        page+=1;
+        self.page+=1;
     }else if(self.currentPlatform==RenRen){
-        pageForRenRen+=1;
+        self.pageForRenRen+=1;
     }
     self.currentLoadType=loadMore;
     [self loadFollowedList];
-    _reloading1=YES;
+    self._reloading1=YES;
 }
 
 -(void)doneLoadingTableViewData1{
@@ -666,8 +644,15 @@
     NSMutableArray *tmpAllIndexCharacter=[[NSMutableArray alloc]init];
     for (int i=0; i<self.followedList.count; i++) {
         Followed *obj=(Followed*)[self.followedList objectAtIndex:i];
-        char firstChar=pinyinFirstLetter([obj.nick characterAtIndex:0]);
-        NSString *firstString=[NSString stringWithFormat:@"%c",firstChar];
+        BOOL isChinese=[GlobalInstance isChineseCharacter:[obj.nick characterAtIndex:0]];
+        NSString *firstString=@"#";
+        if (isChinese) {
+            char firstChar=pinyinFirstLetter([obj.nick characterAtIndex:0]);
+            firstString=[NSString stringWithFormat:@"%c",firstChar];
+        }else{
+            firstString=[obj.nick substringWithRange:NSMakeRange(0, 1)];
+        }
+
         if (![tmpAllIndexCharacter containsObject:[firstString uppercaseString]]) {
             [tmpAllIndexCharacter addObject:[firstString uppercaseString]];
         }
@@ -685,8 +670,16 @@
     for (NSString *sectionString in self.allIndexCharacter) {
         NSMutableArray *sectionDataSource=[[NSMutableArray alloc]init];
         for (Followed *followed in self.followedList) {
-            char firstChar=pinyinFirstLetter([followed.nick characterAtIndex:0]);
-            NSString *firstCharStr=[NSString stringWithFormat:@"%c",firstChar];
+            BOOL isChinese=[GlobalInstance isChineseCharacter:[followed.nick characterAtIndex:0]];
+            NSString *firstCharStr=@"#";
+            
+            if (isChinese) {
+                char firstChar=pinyinFirstLetter([followed.nick characterAtIndex:0]);
+                firstCharStr=[NSString stringWithFormat:@"%c",firstChar];
+            }else{
+                firstCharStr=[followed.nick substringWithRange:NSMakeRange(0, 1)];
+            }
+
             if ([sectionString isEqualToString:[firstCharStr uppercaseString]]) {
                 [sectionDataSource addObject:followed];
             }

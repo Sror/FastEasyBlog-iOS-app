@@ -40,6 +40,13 @@ IconDownloaderDelegate
 @property (nonatomic,retain) NSMutableArray *dataSource;
 @property (nonatomic,retain) NSMutableDictionary *imageDownloadsInProgress;
 
+/**
+ *if you havn't special Object for stone downloaded image instance, use it!
+ *added by:yanghua
+ *date: 2013-3-27
+ */
+@property (nonatomic,retain) NSMutableDictionary *imageDownloadedInstances;
+
 @property (nonatomic,retain) EGORefreshTableHeaderView *refreshHeaderView;
 @property (nonatomic,retain) LoadMoreTableFooterView *loadMoreFooterView;
 
