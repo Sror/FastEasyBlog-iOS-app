@@ -107,11 +107,11 @@ typedef enum{
 		
 		//拍照
         _cameraBtn=[UIButton initButtonInstanceWithType:UIButtonTypeCustom
-                                                 frame:CGRectMake(45,0,25,25)
-                                               imgName:@"cameraBtn.png"
-                                           eventTarget:self
-                                           touchUpFunc:@selector(toolBarBotton_touchUpInside:)
-                                         touchDownFunc:nil];
+                                                  frame:CGRectMake(45,0,25,25)
+                                                imgName:@"cameraBtn.png"
+                                            eventTarget:self
+                                            touchUpFunc:@selector(toolBarBotton_touchUpInside:)
+                                          touchDownFunc:nil];
         _cameraBtn.tag=TAG_TOOLBAR_CAMERA;
 		
 		//地理位置
@@ -134,11 +134,11 @@ typedef enum{
 		
 		//话题
         _topicBtn=[UIButton initButtonInstanceWithType:UIButtonTypeCustom
-                                              frame:CGRectMake(165,0,25,25)
-                                            imgName:@"topicBtn.png"
-                                        eventTarget:self
-                                        touchUpFunc:@selector(toolBarBotton_touchUpInside:)
-                                      touchDownFunc:nil];
+                                                 frame:CGRectMake(165,0,25,25)
+                                               imgName:@"topicBtn.png"
+                                           eventTarget:self
+                                           touchUpFunc:@selector(toolBarBotton_touchUpInside:)
+                                         touchDownFunc:nil];
         _topicBtn.tag=TAG_TOOLBAR_TOPIC;
 		
     }
@@ -264,7 +264,7 @@ typedef enum{
 #pragma mark UIActionSheet Delegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     switch (buttonIndex) {
-        case 0:                     
+        case 0:
             switch (self.currentActionType) {
                 case ACTION_TYPE_PUBLISHINGCONTENT:    //点击清除文字
                     [self clearInputFromTextView];
@@ -322,7 +322,7 @@ typedef enum{
             
         case 1:
             switch (self.currentActionType) {
-                case ACTION_TYPE_PUBLISHINGCONTENT:                             
+                case ACTION_TYPE_PUBLISHINGCONTENT:
                     break;
                     
                 case ACTION_TYPE_PHOTO:                             //取消图片选择
@@ -335,7 +335,7 @@ typedef enum{
             }
             break;
             
-        case 2:                                     
+        case 2:
             break;
     }
 }
@@ -377,7 +377,7 @@ typedef enum{
 /*
  *为导航栏设置右侧的自定义按钮
  */
--(void)setRightBarButtonForNavigationBar{    
+-(void)setRightBarButtonForNavigationBar{
     UIButton *btn=[UIButton initButtonInstanceWithType:UIButtonTypeCustom
                                                  frame:CGRectMake(285,0,50,50)
                                                imgName:@"publishBtn.png"
@@ -390,7 +390,7 @@ typedef enum{
 	[menuBtn release];
 }
 
--(void)publish_touchUpInside:(id)sender{ 
+-(void)publish_touchUpInside:(id)sender{
     UIButton *btn=(UIButton*)self.navigationItem.rightBarButtonItem.customView;
 	[btn setBackgroundImage:[UIImage imageNamed:@"publishBtn.png"] forState:UIControlStateNormal];
     
@@ -448,7 +448,7 @@ typedef enum{
 #pragma mark - PhotoPickerControllerDelegate -
 - (void)photoPickerController:(PhotoPickerController *)controller
     didFinishPickingWithImage:(UIImage *)image
-                 isFromCamera:(BOOL)isFromCamera 
+                 isFromCamera:(BOOL)isFromCamera
 {
     //如果有，先清空文件
     [self clearTmpImages];
@@ -490,18 +490,18 @@ typedef enum{
         case SinaWeibo:
         {
             NSData *imgData=UIImageJPEGRepresentation(image,0.5);
-            [imgData writeToFile:PUBLISH_IMAGEPATH_SINAWEIBO 
+            [imgData writeToFile:PUBLISH_IMAGEPATH_SINAWEIBO
                       atomically:YES];
         }
             break;
             
         case TencentWeibo:
-            [UIImageJPEGRepresentation(image,0.5) writeToFile:PUBLISH_IMAGEPATH_TENCENTWEIBO 
+            [UIImageJPEGRepresentation(image,0.5) writeToFile:PUBLISH_IMAGEPATH_TENCENTWEIBO
                                                    atomically:YES];
             break;
             
         case RenRen:
-            [UIImageJPEGRepresentation(image,0.5) writeToFile:PUBLISH_IMAGEPATH_RENREN 
+            [UIImageJPEGRepresentation(image,0.5) writeToFile:PUBLISH_IMAGEPATH_RENREN
                                                    atomically:YES];
             break;
             
@@ -512,7 +512,7 @@ typedef enum{
 
 -(void)imgClick:(id)sender{
     self.currentActionType=ACTION_TYPE_PHOTO;
-    UIActionSheet *actionSheet=[[UIActionSheet alloc]initWithTitle:@"" 
+    UIActionSheet *actionSheet=[[UIActionSheet alloc]initWithTitle:@""
                                                           delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"查看原图" otherButtonTitles:@"取消图片选择",nil];
     [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
     [actionSheet release];

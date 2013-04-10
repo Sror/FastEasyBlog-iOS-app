@@ -22,7 +22,6 @@
 
 @implementation SinaWeiboPublishController
 
-
 - (void)dealloc{
     [_photoPicker release],_photoPicker=nil;
     [super dealloc];
@@ -92,7 +91,7 @@
 }
 
 
-- (void)publishBtn_handle:(id)sender{	
+- (void)publishBtn_handle:(id)sender{
     NSString *txt=self.publishTxtView.text;
     PublishOperation *publishOperation=[[[SinaWeiboPublishOperation alloc]initWithOperateParams:txt]autorelease];
     [((FastEasyBlogAppDelegate*)appDelegateObj).operationQueue addOperation:publishOperation];

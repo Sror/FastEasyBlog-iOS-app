@@ -49,14 +49,15 @@
 
 #pragma mark - switch controller delegate -
 - (NSArray*)initAndAddChildViewControllers{
-    CGRect tableViewFrame=CGRectMake(0, 
-                                     0, 
-                                     WINDOWWIDTH, 
+    CGRect tableViewFrame=CGRectMake(0,
+                                     0,
+                                     WINDOWWIDTH,
                                      436-64);
     
     //main controller
-    SinaWeiboMainController *mainCtrller=[[SinaWeiboMainController alloc] 
-                                          initWithRefreshHeaderViewEnabled:YES andLoadMoreFooterViewEnabled:YES andTableViewFrame:tableViewFrame];
+    SinaWeiboMainController *mainCtrller=[[SinaWeiboMainController alloc]
+                                          initWithRefreshHeaderViewEnabled:YES andLoadMoreFooterViewEnabled:YES
+                                          andTableViewFrame:tableViewFrame];
     [self addChildViewController:mainCtrller];
     self.currentCtrller=mainCtrller;
     self.navigationTitleLbl.text=@"新浪微博";
@@ -64,7 +65,7 @@
     [mainCtrller release];
     
     //@我 controller
-    SinaWeiboAtMeController *atMeController=[[SinaWeiboAtMeController alloc] 
+    SinaWeiboAtMeController *atMeController=[[SinaWeiboAtMeController alloc]
                                              initWithRefreshHeaderViewEnabled:YES andLoadMoreFooterViewEnabled:YES andTableViewFrame:tableViewFrame];
     [self addChildViewController:atMeController];
     [atMeController release];
@@ -92,12 +93,12 @@
 
 - (NSMutableArray*)initChildViewControllerNavTitles{
     return [[[NSMutableArray alloc]initWithObjects:
-                                                    @"新浪微博",
-                                                    @"@我的",
-                                                    @"评论箱",
-                                                    @"热门收藏",
-                                                    @"我发表的",
-                                                    nil]autorelease];
+             @"新浪微博",
+             @"@我的",
+             @"评论箱",
+             @"热门收藏",
+             @"我发表的",
+             nil]autorelease];
 }
 
 #pragma mark - Click Event Delegate -

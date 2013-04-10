@@ -35,7 +35,7 @@
 - (void)viewDidLoad
 {
     super.delegate=self;
-    [super viewDidLoad];    
+    [super viewDidLoad];
 }
 
 - (void)viewDidUnload
@@ -58,9 +58,9 @@
     //main controller
     TencentWeiboMainController *mainCtrller=
     [[TencentWeiboMainController alloc]
-        initWithRefreshHeaderViewEnabled:YES
-            andLoadMoreFooterViewEnabled:YES
-                       andTableViewFrame:tableViewFrame];
+     initWithRefreshHeaderViewEnabled:YES
+     andLoadMoreFooterViewEnabled:YES
+     andTableViewFrame:tableViewFrame];
     
     [self addChildViewController:mainCtrller];
     self.currentCtrller=mainCtrller;
@@ -72,31 +72,31 @@
     
     //@me controller
     TencentWeiboAtMeController *atMeCtrller=[[TencentWeiboAtMeController alloc] initWithRefreshHeaderViewEnabled:YES
-            andLoadMoreFooterViewEnabled:YES
-                    andTableViewFrame:tableViewFrame];
+                                                                                    andLoadMoreFooterViewEnabled:YES
+                                                                                               andTableViewFrame:tableViewFrame];
     
     [self addChildViewController:atMeCtrller];
     [atMeCtrller release];
     
     //转发热榜
     TencentWeiboHotRepublishController *hotRepublishCtrller=[[TencentWeiboHotRepublishController alloc] initWithRefreshHeaderViewEnabled:YES
-            andLoadMoreFooterViewEnabled:YES
-                       andTableViewFrame:tableViewFrame];
+                                                                                                            andLoadMoreFooterViewEnabled:YES
+                                                                                                                       andTableViewFrame:tableViewFrame];
     
     [self addChildViewController:hotRepublishCtrller];
     [hotRepublishCtrller release];
     
     //我的收藏
     TencentWeiboMyFavoritesController *myFavoritesCtrller=[[TencentWeiboMyFavoritesController alloc] initWithRefreshHeaderViewEnabled:YES
-            andLoadMoreFooterViewEnabled:YES
-                       andTableViewFrame:tableViewFrame];
+                                                                                                         andLoadMoreFooterViewEnabled:YES
+                                                                                                                    andTableViewFrame:tableViewFrame];
     [self addChildViewController:myFavoritesCtrller];
     [myFavoritesCtrller release];
     
     //我发表的
     TencentWeiboPublishedByMeController *publishedByMeCtrller=[[TencentWeiboPublishedByMeController alloc] initWithRefreshHeaderViewEnabled:YES
-            andLoadMoreFooterViewEnabled:YES
-                       andTableViewFrame:tableViewFrame];
+                                                                                                               andLoadMoreFooterViewEnabled:YES
+                                                                                                                          andTableViewFrame:tableViewFrame];
     [self addChildViewController:publishedByMeCtrller];
     [publishedByMeCtrller release];
     
@@ -105,12 +105,12 @@
 
 - (NSMutableArray*)initChildViewControllerNavTitles{
     return [[[NSMutableArray alloc] initWithObjects:
-                                                    @"腾讯微博",
-                                                    @"提及我的",
-                                                    @"转发热榜",
-                                                    @"我的收藏",
-                                                    @"我发表的",
-                                                    nil] autorelease];
+             @"腾讯微博",
+             @"提及我的",
+             @"转发热榜",
+             @"我的收藏",
+             @"我发表的",
+             nil] autorelease];
 }
 
 @end

@@ -211,12 +211,6 @@
  *为导航栏设置左侧自定义按钮
  */
 -(void)setLeftBarButtonForNavigationBar{
-//	UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
-//	btn.frame=CGRectMake(10,0,45,45);
-//	[btn setBackgroundImage:[UIImage imageNamed:@"homePageBtn.png"] forState:UIControlStateNormal];
-//	[btn addTarget:self action:@selector(homePageBtn_TouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
-//	[btn addTarget:self action:@selector(homePageBtn_TouchDown:) forControlEvents:UIControlEventTouchDown];
-    
     UIButton *btn=[UIButton initButtonInstanceWithType:UIButtonTypeCustom
                                    frame:CGRectMake(10,0,45,45)
                                  imgName:@"homePageBtn.png"

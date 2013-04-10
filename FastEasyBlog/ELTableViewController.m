@@ -149,7 +149,7 @@
 
 #pragma mark - private methods -
 - (void)initTableView{
-    _tableView=[[UITableView alloc]initWithFrame:self.view.bounds 
+    _tableView=[[UITableView alloc]initWithFrame:self.tableViewFrame
                                            style:UITableViewStylePlain];
     _tableView.dataSource=self;
     _tableView.delegate=self;

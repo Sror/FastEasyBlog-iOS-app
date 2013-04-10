@@ -8,7 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PhotoPickerController : NSObject <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate> {
+@interface PhotoPickerController : NSObject
+<
+UINavigationControllerDelegate,
+UIImagePickerControllerDelegate,
+UIActionSheetDelegate
+> {
    id delegate_;
    UIImagePickerController *imagePicker_;
    id popoverController_;
