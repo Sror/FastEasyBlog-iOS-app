@@ -8,6 +8,11 @@
 
 #import "SinaWeiboBaseController.h"
 
+static NSString *WeiboCellIdentifier                =@"WeiboCellIdentifier";
+static NSString *WeiboCellIdentifierWithImg         =@"WeiboCellIdentifierWithImg";
+static NSString *WeiboCellIdentifierForSource       =@"WeiboCellIdentifierForSource";
+static NSString *WeiboCellIdentifierForSourceWithImg=@"WeiboCellIdentifierForSourceWithImg";
+
 @interface SinaWeiboBaseController ()
 
 @end
@@ -355,26 +360,22 @@
         }
         
         if (!isRePublish&&!hasWeiboImg) {                   	//原創無圖片
-            static NSString *WeiboCellIdentifier=@"WeiboCellIdentifier";
             cell=[tableView dequeueReusableCellWithIdentifier:WeiboCellIdentifier];
             if (!cell) {
                 cell=[[[WeiboCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:WeiboCellIdentifier]autorelease];
             }
         }else if(!isRePublish&&hasWeiboImg){                	//原創有圖片
-            static NSString *WeiboCellIdentifierWithImg=@"WeiboCellIdentifierWithImg";
             cell=[tableView dequeueReusableCellWithIdentifier:WeiboCellIdentifierWithImg];
             if (!cell) {
                 cell=[[[WeiboCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:WeiboCellIdentifierWithImg]autorelease];
             }
             cell.imgUrl=weibo.original_pic;
         }else if(isRePublish&&!hasSourceImg){               //帶原圍脖無圖片
-            static NSString *WeiboCellIdentifierForSource=@"WeiboCellIdentifierForSource";
             cell=[tableView dequeueReusableCellWithIdentifier:WeiboCellIdentifierForSource];
             if (!cell) {
                 cell=[[[WeiboCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:WeiboCellIdentifierForSource]autorelease];
             }
         }else if(isRePublish&&hasSourceImg){                //帶原圍脖有圖片
-            static NSString *WeiboCellIdentifierForSourceWithImg=@"WeiboCellIdentifierForSourceWithImg";
             cell=[tableView dequeueReusableCellWithIdentifier:WeiboCellIdentifierForSourceWithImg];
             if (!cell) {
                 cell=[[[WeiboCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:WeiboCellIdentifierForSourceWithImg]autorelease];

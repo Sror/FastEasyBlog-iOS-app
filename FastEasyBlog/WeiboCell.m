@@ -10,30 +10,27 @@
 
 Class object_getClass(id object);
 
+@interface WeiboCell ()
+
+@property (nonatomic,retain) UILabel *txtWeiboLabel;
+@property (nonatomic,retain) UILabel *txtSourceWeiboLabel;
+@property (nonatomic,retain) UIView *sourceView;
+
+@end
+
 @implementation WeiboCell
 
-@synthesize txtWeibo,
-			txtSourceWeibo,
-			weiboImg,
-			sourceImg,
-			showWeiboImgDelegate,
-			weiboImgView,
-			sourceImgView,
-			imgUrl,
-			hasWeiboImg,
-			hasSourceWeiboImg;
-
 -(void)dealloc{
-    [txtWeibo release],txtWeibo=nil;
-    [txtWeiboLabel release],txtWeiboLabel=nil;
-    [txtSourceWeibo release],txtSourceWeibo=nil;
-    [txtSourceWeiboLabel release],txtSourceWeiboLabel=nil;
-    [sourceView release],sourceView=nil;
-    [weiboImg release],weiboImg=nil;
-    [sourceImg release],sourceImg=nil;
-	[imgUrl release],imgUrl=nil;
-    [weiboImgView release],weiboImgView=nil;
-    [sourceImgView release],sourceImgView=nil;
+    [_txtWeibo release],_txtWeibo=nil;
+    [_txtWeiboLabel release],_txtWeiboLabel=nil;
+    [_txtSourceWeibo release],_txtSourceWeibo=nil;
+    [_txtSourceWeiboLabel release],_txtSourceWeiboLabel=nil;
+    [_sourceView release],_sourceView=nil;
+    [_weiboImg release],_weiboImg=nil;
+    [_sourceImg release],_sourceImg=nil;
+	[_imgUrl release],_imgUrl=nil;
+    [_weiboImgView release],_weiboImgView=nil;
+    [_sourceImgView release],_sourceImgView=nil;
     [super dealloc];
 }
 
@@ -43,12 +40,12 @@ Class object_getClass(id object);
     if (self) {
         UIView *_contentView=(UIView*)[self viewWithTag:7000];
         
-        txtWeiboLabel=[[UILabel alloc]initWithFrame:CGRectZero];
-        [txtWeiboLabel setMinimumFontSize:15];
-		[txtWeiboLabel setNumberOfLines:0];
-		[txtWeiboLabel setLineBreakMode:UILineBreakModeWordWrap];
-        [txtWeiboLabel setFont:WEIBOTEXTFONT];
-        [_contentView addSubview:txtWeiboLabel];
+        _txtWeiboLabel=[[UILabel alloc]initWithFrame:CGRectZero];
+        [_txtWeiboLabel setMinimumFontSize:15];
+		[_txtWeiboLabel setNumberOfLines:0];
+		[_txtWeiboLabel setLineBreakMode:UILineBreakModeWordWrap];
+        [_txtWeiboLabel setFont:WEIBOTEXTFONT];
+        [_contentView addSubview:_txtWeiboLabel];
         
         //微博图片
         UIImageView *tmpWeiboImgView=[[UIImageView alloc]initWithFrame:CGRectZero];
@@ -59,26 +56,26 @@ Class object_getClass(id object);
         [_contentView addSubview:self.weiboImgView];
         
         //原始微博
-        sourceView=[[UIView alloc]initWithFrame:CGRectZero];
-        sourceView.backgroundColor=RGBCOLOR(235,235,235);
-        sourceView.tag=70000;
-        [_contentView addSubview:sourceView];
+        _sourceView=[[UIView alloc]initWithFrame:CGRectZero];
+        _sourceView.backgroundColor=RGBCOLOR(235,235,235);
+        _sourceView.tag=70000;
+        [_contentView addSubview:_sourceView];
         
-        txtSourceWeiboLabel=[[UILabel alloc]initWithFrame:CGRectZero];
-        txtSourceWeiboLabel.tag=700001;
-        txtSourceWeiboLabel.backgroundColor=RGBCOLOR(235,235,235);
-		[txtSourceWeiboLabel setMinimumFontSize:14];
-		[txtSourceWeiboLabel setNumberOfLines:0];
-		[txtSourceWeiboLabel setLineBreakMode:UILineBreakModeWordWrap];
-        [txtSourceWeiboLabel setFont:SOURCEWEIBOTEXTFONT];
-        [sourceView addSubview:txtSourceWeiboLabel];
+        _txtSourceWeiboLabel=[[UILabel alloc]initWithFrame:CGRectZero];
+        _txtSourceWeiboLabel.tag=700001;
+        _txtSourceWeiboLabel.backgroundColor=RGBCOLOR(235,235,235);
+		[_txtSourceWeiboLabel setMinimumFontSize:14];
+		[_txtSourceWeiboLabel setNumberOfLines:0];
+		[_txtSourceWeiboLabel setLineBreakMode:UILineBreakModeWordWrap];
+        [_txtSourceWeiboLabel setFont:SOURCEWEIBOTEXTFONT];
+        [_sourceView addSubview:_txtSourceWeiboLabel];
         
         //原始图片        
         UIImageView *tmpSourceWeiboImgView=[[UIImageView alloc]initWithFrame:CGRectZero];
         tmpSourceWeiboImgView.userInteractionEnabled=YES;
         [tmpSourceWeiboImgView addGestureRecognizer:[[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(sourceWeiboImgClick:)]autorelease]];
         self.sourceImgView=tmpSourceWeiboImgView;
-        [sourceView addSubview:self.sourceImgView];
+        [_sourceView addSubview:self.sourceImgView];
         [tmpSourceWeiboImgView release];
         
     }
@@ -112,31 +109,31 @@ Class object_getClass(id object);
         if (self.hasSourceWeiboImg) {			//有图片
             [contentView setFrame:CGRectMake(50+CELL_CONTENT_MARGIN, 50+CELL_CONTENT_MARGIN, CELL_CONTENT_WIDTH-(CELL_CONTENT_MARGIN*2), txtHeight+txtSourceHeight+WEIBO_IMAGE_HEIGHT+CELL_CONTENT_SOURCE_MARGIN*2)];
             //设置内容的frame
-            [txtWeiboLabel setFrame:CGRectMake(0, 0, contentView.frame.size.width, txtHeight)];
-            [sourceView setFrame:CGRectMake(0, txtHeight+CELL_CONTENT_SOURCE_MARGIN, CELL_CONTENT_WIDTH-(CELL_CONTENT_MARGIN*2), txtSourceHeight+CELL_CONTENT_SOURCE_MARGIN*2+WEIBO_IMAGE_HEIGHT)];
+            [self.txtWeiboLabel setFrame:CGRectMake(0, 0, contentView.frame.size.width, txtHeight)];
+            [self.sourceView setFrame:CGRectMake(0, txtHeight+CELL_CONTENT_SOURCE_MARGIN, CELL_CONTENT_WIDTH-(CELL_CONTENT_MARGIN*2), txtSourceHeight+CELL_CONTENT_SOURCE_MARGIN*2+WEIBO_IMAGE_HEIGHT)];
             //设置原文的frame
-            [txtSourceWeiboLabel setFrame:CGRectMake(CELL_CONTENT_SOURCE_MARGIN, CELL_CONTENT_SOURCE_MARGIN, sourceView.frame.size.width-CELL_CONTENT_SOURCE_MARGIN*2, txtSourceHeight)];
+            [self.txtSourceWeiboLabel setFrame:CGRectMake(CELL_CONTENT_SOURCE_MARGIN, CELL_CONTENT_SOURCE_MARGIN, self.sourceView.frame.size.width-CELL_CONTENT_SOURCE_MARGIN*2, txtSourceHeight)];
             //设置图片区域的frame
             self.sourceImgView.frame=CGRectMake(0, txtSourceHeight+CELL_CONTENT_SOURCE_MARGIN,WEIBO_IMAGE_HEIGHT, WEIBO_IMAGE_HEIGHT);
         }else {									//无图片
             [contentView setFrame:CGRectMake(50+CELL_CONTENT_MARGIN, 50+CELL_CONTENT_MARGIN, CELL_CONTENT_WIDTH-(CELL_CONTENT_MARGIN*2), txtHeight+txtSourceHeight+CELL_CONTENT_SOURCE_MARGIN*2)];
             //设置内容的frame
-            [txtWeiboLabel setFrame:CGRectMake(0, 0, contentView.frame.size.width, txtHeight)];
-            [sourceView setFrame:CGRectMake(0, txtHeight+CELL_CONTENT_SOURCE_MARGIN, contentView.frame.size.width, txtSourceHeight+CELL_CONTENT_SOURCE_MARGIN*2)];
+            [self.txtWeiboLabel setFrame:CGRectMake(0, 0, contentView.frame.size.width, txtHeight)];
+            [self.sourceView setFrame:CGRectMake(0, txtHeight+CELL_CONTENT_SOURCE_MARGIN, contentView.frame.size.width, txtSourceHeight+CELL_CONTENT_SOURCE_MARGIN*2)];
             //设置原文的frame
-            [txtSourceWeiboLabel setFrame:CGRectMake(CELL_CONTENT_SOURCE_MARGIN, CELL_CONTENT_SOURCE_MARGIN, sourceView.frame.size.width-CELL_CONTENT_SOURCE_MARGIN*2, txtSourceHeight)];
+            [self.txtSourceWeiboLabel setFrame:CGRectMake(CELL_CONTENT_SOURCE_MARGIN, CELL_CONTENT_SOURCE_MARGIN, self.sourceView.frame.size.width-CELL_CONTENT_SOURCE_MARGIN*2, txtSourceHeight)];
         }
         
     }else {										//原创微博，只需判斷原圍脖圖片
         if (self.hasWeiboImg) {                          
             [contentView setFrame:CGRectMake(50+CELL_CONTENT_MARGIN, 50+CELL_CONTENT_MARGIN, CELL_CONTENT_WIDTH-(CELL_CONTENT_MARGIN*2), txtHeight+WEIBO_IMAGE_HEIGHT+IMAGE_MARGIN)];
             //设置内容的frame
-            [txtWeiboLabel setFrame:CGRectMake(0, 0, contentView.frame.size.width, txtHeight)];
+            [self.txtWeiboLabel setFrame:CGRectMake(0, 0, contentView.frame.size.width, txtHeight)];
             self.weiboImgView.frame=CGRectMake(0, txtHeight+IMAGE_MARGIN, WEIBO_IMAGE_HEIGHT, WEIBO_IMAGE_HEIGHT);
         }else{
             [contentView setFrame:CGRectMake(50+CELL_CONTENT_MARGIN, 50+CELL_CONTENT_MARGIN, CELL_CONTENT_WIDTH-(CELL_CONTENT_MARGIN*2), txtHeight)];
             //设置内容的frame
-            [txtWeiboLabel setFrame:CGRectMake(0, 0, contentView.frame.size.width, txtHeight)];
+            [self.txtWeiboLabel setFrame:CGRectMake(0, 0, contentView.frame.size.width, txtHeight)];
         }
     }
     
@@ -145,43 +142,43 @@ Class object_getClass(id object);
 }
 
 #pragma mark -override setter-
--(void)setTxtWeibo:(NSString *)_txtWeibo{
-    if (!txtWeibo||[txtWeibo isNotEqualToString:_txtWeibo]) {
-        [txtWeibo release];
-        txtWeibo=[_txtWeibo retain];
+-(void)setTxtWeibo:(NSString *)txtWeibo_{
+    if (!_txtWeibo||[_txtWeibo isNotEqualToString:txtWeibo_]) {
+        [_txtWeibo release];
+        _txtWeibo=[txtWeibo_ retain];
     }
-    txtWeiboLabel.text=txtWeibo;
+    self.txtWeiboLabel.text=_txtWeibo;
 }
 
--(void)setTxtSourceWeibo:(NSString *)_txtSourceWeibo{
-    if (!txtSourceWeibo||[txtSourceWeibo isNotEqualToString:_txtSourceWeibo]) {
-        [txtSourceWeibo release];
-        txtSourceWeibo=[_txtSourceWeibo retain];
+-(void)setTxtSourceWeibo:(NSString *)txtSourceWeibo_{
+    if (!_txtSourceWeibo||[_txtSourceWeibo isNotEqualToString:txtSourceWeibo_]) {
+        [_txtSourceWeibo release];
+        _txtSourceWeibo=[txtSourceWeibo_ retain];
     }
-    txtSourceWeiboLabel.text=txtSourceWeibo;
+    self.txtSourceWeiboLabel.text=_txtSourceWeibo;
 }
 
--(void)setWeiboImg:(UIImage *)_weiboImg{
-    if (_weiboImg!=weiboImg) {
-        [weiboImg release];
-        weiboImg=[_weiboImg retain];
+-(void)setWeiboImg:(UIImage *)weiboImg_{
+    if (weiboImg_!=_weiboImg) {
+        [_weiboImg release];
+        _weiboImg=[weiboImg_ retain];
     }
-    self.weiboImgView.image=weiboImg;
+    self.weiboImgView.image=_weiboImg;
 }
 
--(void)setSourceImg:(UIImage*)_sourceImg{
-    if (_sourceImg!=sourceImg) {
-        [sourceImg release];
-        sourceImg=[_sourceImg retain];
+-(void)setSourceImg:(UIImage*)sourceImg_{
+    if (sourceImg_!=_sourceImg) {
+        [_sourceImg release];
+        _sourceImg=[sourceImg_ retain];
     }
-    self.sourceImgView.image=sourceImg;
+    self.sourceImgView.image=_sourceImg;
 }
 
 #pragma mark -override setter-
-- (void)setShowWeiboImgDelegate:(id<WeiboImageDelegate>)_showWeiboImgDelegate{
-    if (showWeiboImgDelegate!=_showWeiboImgDelegate) {
-        showWeiboImgDelegate=_showWeiboImgDelegate;
-        _originalShowImgClass=object_getClass(_showWeiboImgDelegate);
+- (void)setShowWeiboImgDelegate:(id<WeiboImageDelegate>)showWeiboImgDelegate_{
+    if (_showWeiboImgDelegate!=showWeiboImgDelegate_) {
+        _showWeiboImgDelegate=showWeiboImgDelegate_;
+        _originalShowImgClass=object_getClass(showWeiboImgDelegate_);
     }
 }
 

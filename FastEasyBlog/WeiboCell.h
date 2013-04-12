@@ -24,22 +24,6 @@
 #define IMAGE_MARGIN 3.0f
 
 @interface WeiboCell : WeiboBaseCell{
-    NSString *txtWeibo;             //文本微博
-    NSString *txtSourceWeibo;       //原文（如果是转发，则会有原文）
-    
-    UILabel *txtWeiboLabel;
-    UIImageView *weiboImgView;      //微博图片
-    UIImage *weiboImg;
-    
-    UIView *sourceView;             //原始微博视图
-    UILabel *txtSourceWeiboLabel;   //原始微博内容
-    UIImageView *sourceImgView;     //原微博图片
-    UIImage *sourceImg;
-	
-	NSString *imgUrl;				//图片地址(供查看大图使用)
-	
-	id<WeiboImageDelegate> showWeiboImgDelegate;
-    
     Class _originalShowImgClass;
 }
 
