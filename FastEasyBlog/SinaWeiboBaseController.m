@@ -412,26 +412,29 @@ static NSString *WeiboCellIdentifierForSourceWithImg=@"WeiboCellIdentifierForSou
             cell.txtSourceWeibo=sourceContent;
         }
         
-        if (hasSourceImg) {
-            if (!weibo.sourceImg) {
-                cell.sourceImg=[UIImage imageNamed:@"smallImagePlaceHolder.png"];
-                NSString *sourceImgUrl=weibo.retweeted_status.thumbnail_pic;
-                
-                [cell.sourceImgView setImageWithURL:[NSURL URLWithString:sourceImgUrl]
-                                   placeholderImage:[UIImage imageNamed:@"smallImagePlaceHolder.png"]
-                                            success:^(UIImage *image, BOOL cached) {
-                                                CGSize itemSize=CGSizeMake(WEIBO_IMAGE_HEIGHT*2, WEIBO_IMAGE_HEIGHT*2);
-                                                weibo.sourceImg=[GlobalInstance thumbnailWithImageWithoutScale:image size:itemSize];
-                                                cell.sourceImg=weibo.sourceImg;
-                                            }
-                                            failure:^(NSError *error) {
-                                                
-                                            }];
-                
-            }else{
-                cell.sourceImg=weibo.sourceImg;
+        if (isRePublish) {
+            if (hasSourceImg) {
+                if (!weibo.sourceImg) {
+                    cell.sourceImg=[UIImage imageNamed:@"smallImagePlaceHolder.png"];
+                    NSString *sourceImgUrl=weibo.retweeted_status.thumbnail_pic;
+                    
+                    [cell.sourceImgView setImageWithURL:[NSURL URLWithString:sourceImgUrl]
+                                       placeholderImage:[UIImage imageNamed:@"smallImagePlaceHolder.png"]
+                                                success:^(UIImage *image, BOOL cached) {
+                                                    CGSize itemSize=CGSizeMake(WEIBO_IMAGE_HEIGHT*2, WEIBO_IMAGE_HEIGHT*2);
+                                                    weibo.sourceImg=[GlobalInstance thumbnailWithImageWithoutScale:image size:itemSize];
+                                                    cell.sourceImg=weibo.sourceImg;
+                                                }
+                                                failure:^(NSError *error) {
+                                                    
+                                                }];
+                    
+                }else{
+                    cell.sourceImg=weibo.sourceImg;
+                }
             }
         }
+        
         
         if (hasWeiboImg) {
             if (!weibo.weiboImg) {

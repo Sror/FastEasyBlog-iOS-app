@@ -4,7 +4,7 @@
 // Created by Billy Gray on 2/26/09.
 // Copyright (c) 2009–2012, ZETETIC LLC
 // All rights reserved.
-// 
+//
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
 //     * Redistributions of source code must retain the above copyright
@@ -15,7 +15,7 @@
 //     * Neither the name of the ZETETIC LLC nor the
 //       names of its contributors may be used to endorse or promote products
 //       derived from this software without specific prior written permission.
-// 
+//
 // THIS SOFTWARE IS PROVIDED BY ZETETIC LLC ''AS IS'' AND ANY
 // EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -38,7 +38,7 @@
  */
 - (NSUInteger)daysAgo {
     NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *components = [calendar components:(NSDayCalendarUnit) 
+    NSDateComponents *components = [calendar components:(NSDayCalendarUnit)
 											   fromDate:self
 												 toDate:[NSDate date]
 												options:0];
@@ -157,7 +157,7 @@
 + (NSString *)stringForDisplayFromDate:(NSDate *)date
                               prefixed:(BOOL)prefixed
                      alwaysDisplayTime:(BOOL)displayTime {
-    /* 
+    /*
 	 * if the date is in today, display 12-hour time with meridian,
 	 * if it is within the last 7 days, display weekday name (Friday)
 	 * if within the calendar year, display as Jan 23
@@ -167,7 +167,7 @@
     NSDateFormatter *displayFormatter = [[NSDateFormatter alloc] init];
     
 	NSDate *today = [NSDate date];
-    NSDateComponents *offsetComponents = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) 
+    NSDateComponents *offsetComponents = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
 													 fromDate:today];
 	
 	NSDate *midnight = [calendar dateFromComponents:offsetComponents];
@@ -198,9 +198,9 @@
 			// check if same calendar year
 			NSInteger thisYear = [offsetComponents year];
 			
-			NSDateComponents *dateComponents = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) 
+			NSDateComponents *dateComponents = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
 														   fromDate:date];
-			NSInteger thatYear = [dateComponents year];			
+			NSInteger thatYear = [dateComponents year];
 			if (thatYear >= thisYear) {
                 if (displayTime) {
                     [displayFormatter setDateFormat:@"MMM d h:mm a"];
@@ -272,7 +272,7 @@
 						   interval:NULL forDate:self];
 	if (ok) {
 		return beginningOfWeek;
-	} 
+	}
 	
 	// couldn't calc via range, so try to grab Sunday, assuming gregorian style
 	// Get the weekday component of the current date
@@ -297,7 +297,7 @@
 - (NSDate *)beginningOfDay {
     NSCalendar *calendar = [NSCalendar currentCalendar];
     // Get the weekday component of the current date
-	NSDateComponents *components = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) 
+	NSDateComponents *components = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
 											   fromDate:self];
 	return [calendar dateFromComponents:components];
 }
@@ -328,7 +328,7 @@
 }
 
 // preserving for compatibility
-+ (NSString *)dbFormatString {	
++ (NSString *)dbFormatString {
 	return [NSDate timestampFormatString];
 }
 
